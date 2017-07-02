@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    //- use ${h.siteName} instead of "Site Name"
+    title= `${title} | Site Name` 
+    //- link(rel='stylesheet', href='/dist/style.css')
+    //- link(rel="shortcut icon" type="image/png" href="/images/icons/quaker.png")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  body
+    block header
+      //- header/navbar
+      h1 default header
+    
+    block messages 
+      //- flash messages go here
+    
+    .content 
+      block content 
+        //- main content
+        h2 default content
+    
+    footer 
+      block footer 
+        //- footer
+        p default footer
+        
+    block scripts
+      //- script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
+      //- script(src="/dist/minified.js")
