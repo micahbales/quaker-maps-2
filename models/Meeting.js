@@ -8,6 +8,7 @@ const meetingSchema = new Schema({
     trim: true,
     required: 'Your meeting must have a name'
   },
+  description: String,
   slug: String,
   city: String,
   state: String,
