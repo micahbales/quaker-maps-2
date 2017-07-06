@@ -9,9 +9,17 @@ html
   body
     block header
       //- header/navbar
-      .header
-        img(src="/images/pug.svg" style="width: 200px; height: 200px; display: inline-block;")
-        h1(style="display: inline-block;") default header
+      header.top
+        nav.nav
+          .nav__section.nav__section--pages 
+            li.nav__item
+              a.nav__link.nav__link--logo(href="/")
+                != h.icon('pug')
+          each item in h.menu
+            li.nav__item 
+              a.nav__link.nav__link--logo(href=item.slug, class=currentPath.startsWith(item.slug) ? 'nav__link--active' : '')
+                != h.icon(item.icon)
+                span #{item.title}
     
     block messages 
       //- flash messages go here

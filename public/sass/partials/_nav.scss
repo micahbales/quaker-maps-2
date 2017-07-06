@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5%;
+}
+
+.nav__item {
+  width: 100px;
+  height: 100px;
+}
+
+li.nav__item {
+  list-style: none;
+}
