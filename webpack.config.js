@@ -25,11 +25,13 @@ const config = {
     App: './public/javascripts/app.js'
   },
   devtool: 'source-map',
+  // determine where we output our bundled javascript
   output: {
     path: path.resolve(__dirname, 'public', 'dist'),
     filename: '[name].bundle.js'
   },
   module: {
+    // set rules for processing javascript and styles
     rules: [javascript, styles]
   },
   plugins: [
