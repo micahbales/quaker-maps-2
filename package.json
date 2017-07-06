@@ -3,7 +3,10 @@
   "version": "2.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon start.js",
+    "prod": "nodemon ./start.js",
+    "start": "concurrently \"npm run watch\" \"npm run assets\"",
+    "assets": "webpack -w",
+    "watch": "nodemon ./start.js",
     "test": "mocha"
   },
   "author": "Micah Bales",
@@ -13,13 +16,19 @@
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
-    "mongoose": "^4.11.0",
+    "mongoose": "^4.11.1",
     "pug": "^2.0.0-rc.2"
   },
   "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
     "chai": "^4.0.2",
+    "concurrently": "^3.5.0",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
-    "should": "^11.2.1"
+    "postcss": "^6.0.6",
+    "should": "^11.2.1",
+    "webpack": "^3.0.0"
   }
 }
