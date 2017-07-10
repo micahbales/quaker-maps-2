@@ -9,10 +9,23 @@
   margin-bottom: 5%; }
 
 .nav__item {
-  width: 100px;
-  height: 100px; }
+  width: 105px;
+  height: 105px; }
 
 li.nav__item {
   list-style: none; }
+  li.nav__item i {
+    font-size: 75px;
+    color: #56332B;
+    margin-top: 20px;
+    margin-left: 10px; }
+
+.nav__link--logo {
+  text-align: center;
+  text-decoration: none;
+  color: black; }
+  .nav__link--logo span {
+    display: inline-block;
+    margin-left: 20px; }
 
 /*# sourceMappingURL=style.css.map*/

@@ -5,10 +5,27 @@
 }
 
 .nav__item {
-  width: 100px;
-  height: 100px;
+  width: 105px;
+  height: 105px;
 }
 
 li.nav__item {
   list-style: none;
+  i {
+    font-size: 75px;
+    color: #56332B;
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+}
+
+.nav__link--logo {
+  text-align: center;
+  text-decoration: none;
+  color: black;
+
+  span {
+    display: inline-block;
+    margin-left: 20px;
+  }
 }

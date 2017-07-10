@@ -1,10 +1,9 @@
 doctype html
 html
   head
-    //- use ${h.siteName} instead of "Site Name"
-    title= `${title} | Site Name` 
+    title= `${title} | ${h.siteName}`
     link(rel='stylesheet', href='/dist/style.css')
-    //- link(rel="shortcut icon" type="image/png" href="/images/icons/quaker.png")
+    link(rel="shortcut icon" type="image/png" href="/images/icons/pug.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     block header
@@ -18,7 +17,7 @@ html
           each item in h.menu
             li.nav__item 
               a.nav__link.nav__link--logo(href=item.slug, class=currentPath.startsWith(item.slug) ? 'nav__link--active' : '')
-                != h.icon(item.icon)
+                i(class=`fa fa-${item.fa}` aria-hidden="true")
                 span #{item.title}
     
     block messages 
@@ -35,5 +34,7 @@ html
         p default footer
         
     block scripts
-      //- script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)
+      //- bundled scripts from webpack
       script(src="/dist/App.bundle.js")
+      //- font awesome via CDN
+      script(src="https://use.fontawesome.com/1fc94b8980.js")
