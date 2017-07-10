@@ -3,7 +3,7 @@ extends layout
 block content
   .inner
     h2= title 
-    form(method='POST' action='addMeeting')
+    form(method='POST' action='add')
       label(for='name') Name
       input#name(type='text' placeholder='Name of Meeting' name='name' required)
       label(for='description') Description

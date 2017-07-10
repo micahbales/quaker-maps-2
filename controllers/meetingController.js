@@ -6,5 +6,12 @@ exports.map = (req, res) => {
 }
 
 exports.addMeeting = (req, res) => {
-  res.render('addMeeting', { title: 'Add Meeting'} );
+  res.render('editMeeting', { title: 'Add Meeting'} );
+}
+
+exports.createMeeting = async (req, res) => {
+  // TODO: handle for errors with higher level function
+  const meeting = new Meeting(req.body);
+  await meeting.save();
+  res.redirect('/');
 }

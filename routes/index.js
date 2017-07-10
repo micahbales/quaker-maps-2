@@ -3,11 +3,8 @@ const router = express.Router();
 const meetingController = require('../controllers/meetingController');
 
 router.get('/', meetingController.map);
-router.get('/meetings/add', meetingController.addMeeting)
 
-/* test */
-router.get('/test', (req, res) => {
-  res.json({ 'json': 'response' });
-});
+router.get('/meetings/add', meetingController.addMeeting);
+router.post('/meetings/add', meetingController.createMeeting);
 
 module.exports = router;
