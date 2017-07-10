@@ -11,5 +11,8 @@ exports.menu = [
   { slug: '/meetings', title: 'Meetings', fa: 'users' }
 ];
 
+// moment.js displays nicely-formatted dates. This requires it for use in our templates
+exports.moment = require('moment');
+
 // dump raw JSON into the view, for debugging purposes
 exports.dump = (obj) => JSON.stringify(obj, null, 2);
