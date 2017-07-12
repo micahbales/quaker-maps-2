@@ -18,10 +18,10 @@ const meetingSchema = new Schema({
       type: String,
       default: 'Point'
     },
-    coordinates: {
+    coordinates: [{
       type: Number,
       required: 'You must supply coordinates'
-    },
+    }],
     address: {
       type: String,
       required: 'Your meeting must have an address'
@@ -29,7 +29,11 @@ const meetingSchema = new Schema({
   },
   yearlymeeting: String,
   branch: String, // conservative, FGC, FUM, EFCI, unaffiliated
-  worshipstyle: String // programmed, unprogrammed, semi-programmed
+  worshipstyle: String, // programmed, unprogrammed, semi-programmed
+  created: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('Meeting', meetingSchema);
