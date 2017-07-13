@@ -2,6 +2,9 @@
   "name": "quaker-maps-2",
   "version": "2.0.0",
   "description": "",
+  "engines": {
+    "node": ">= 8.1.4"
+  },
   "scripts": {
     "prod": "nodemon ./start.js",
     "start": "concurrently \"npm run watch\" \"npm run assets\"",
