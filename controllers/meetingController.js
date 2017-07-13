@@ -6,7 +6,9 @@ exports.map = (req, res) => {
 }
 
 exports.addMeeting = (req, res) => {
-  res.render('editMeeting', { title: 'Add Meeting'} );
+  // create empty object to recieve meeting data from form
+  const meeting = {};
+  res.render('editMeeting', { title: 'Add Meeting', meeting } );
 }
 
 exports.createMeeting = async (req, res) => {

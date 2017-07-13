@@ -8,12 +8,15 @@ block content
       input#name(type='text' placeholder='Name of Meeting' name='name' required)
       label(for='description') Description
       input#description(type='textarea' placeholder='Description of Meeting' name='description')
-      label(for='address') Address
-      input#address(type='text' placeholder='Meeting Address' name='address' required)
-      //- label(for='lng') LNG 
-      //- input#lng(type='text' id='lng' name='location[coordinates][0]' value=(meeting.location && meeting.location.coordinates[0]) required)
-      //- label(for='lat') LAT 
-      //- input#lat(type='text' id='lat' name='location[coordinates][1]' value=(meeting.location && meeting.location.coordinates[1]) required)
+
+      //- address, lat and lng
+      label(for="address") Address
+      input(type="text" id="address" name="location[address]" value=(meeting.location && meeting.location.address ))
+      label(for="lng") LNG 
+      input(type="text" id="lng" name="location[coordinates][0]" value=(meeting.location && meeting.location.coordinates[0]) required)
+      label(for="lat") LAT 
+      input(type="text" id="lat" name="location[coordinates][1]" value=(meeting.location && meeting.location.coordinates[1]) required)
+        
       label(for='city') City
       input#city(type='text' placeholder='Name of Meeting' name='city')
       label(for='state') State/Province
