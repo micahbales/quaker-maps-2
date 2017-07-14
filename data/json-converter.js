@@ -1,5 +1,8 @@
 const fs = require('fs');
-const sourceJSON = JSON.parse(fs.readFileSync('./north-america-meetings.json', 'utf-8'));
+const path = require('path');
+const sourcePath = path.join(__dirname, 'north-america-meetings.json');
+const writePath = path.join(__dirname, 'northAmericaMeetings.json');
+const sourceJSON = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
 const newJSON = [];
 
 // cycle through each entry from the source data
@@ -29,6 +32,6 @@ sourceJSON.forEach((meeting) => {
 });
 
 // write re-formatted data to new collection
-fs.writeFileSync('northAmericaMeetings.json', newJSON, 'utf-8', (err) => {
+fs.writeFileSync(writePath, newJSON, 'utf-8', (err) => {
   if (err) console.error(err);
 });
