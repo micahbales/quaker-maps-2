@@ -8,6 +8,8 @@ const newJSON = [];
 // cycle through each entry from the source data
 // add a re-formatted object to the new collection
 sourceJSON.forEach((meeting) => {
+  console.log(meeting.branch);
+
   let newMeetingEntry =
     {
       "name": meeting.name,
@@ -23,10 +25,10 @@ sourceJSON.forEach((meeting) => {
         "lng": meeting.longitude
       },
       "address": meeting.address,
-      // TODO: for last 3 attributes, should be array with multiple options (break at ',')
-      "yearlymeeting": meeting.yearlymeeting,
-      "branch": meeting.branch,
-      "worshipstyle": meeting.worshipstyle
+      // last 3 attributes are arrays with multiple options
+      "yearlymeeting": meeting.yearlymeeting ? meeting.yearlymeeting.split(', ') : ["Unaffiliated"],
+      "branch": meeting.branch ? meeting.branch.split(', ') : ["Unaffiliated"],
+      "worshipstyle": meeting.worshipstyle ? meeting.worshipstyle.split(', ') : ["Unaffiliated"]
     };
     newJSON.push(JSON.stringify(newMeetingEntry));
 });
