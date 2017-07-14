@@ -4,19 +4,18 @@ const sourcePath = path.join(__dirname, 'north-america-meetings.json');
 const writePath = path.join(__dirname, 'northAmericaMeetings.json');
 const sourceJSON = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
 const newJSON = [];
+const slugs = require('slugs');
 
 // cycle through each entry from the source data
 // add a re-formatted object to the new collection
 sourceJSON.forEach((meeting) => {
-  console.log(meeting.branch);
 
   let newMeetingEntry =
     {
       "name": meeting.name,
       // the source data does not include a description, so let's create a stub
       "description": `${meeting.name} is a Quaker congregation in ${meeting.city}, ${meeting.state}.`,
-      // TODO: use name property to create a unique slug
-      // "slug",
+      "slug": slugs(meeting.name),
       "city": meeting.city,
       "state": meeting.state,
       "zip": meeting.zip,
@@ -34,6 +33,6 @@ sourceJSON.forEach((meeting) => {
 });
 
 // write re-formatted data to new collection
-fs.writeFileSync(writePath, newJSON, 'utf-8', (err) => {
+fs.writeFileSync(writePath, `[${newJSON}]`, 'utf-8', (err) => {
   if (err) console.error(err);
 });
