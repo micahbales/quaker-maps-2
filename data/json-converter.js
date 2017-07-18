@@ -12,6 +12,7 @@ sourceJSON.forEach((meeting) => {
 
   let newMeetingEntry =
     {
+      "_id": mongoose.Types.ObjectId(),
       "name": meeting.name,
       // the source data does not include a description, so let's create a stub
       "description": `${meeting.name} is a Quaker congregation in ${meeting.city}, ${meeting.state}.`,
@@ -19,11 +20,13 @@ sourceJSON.forEach((meeting) => {
       "city": meeting.city,
       "state": meeting.state,
       "zip": meeting.zip,
-      "coordinates": {
-        "lat": meeting.latitude,
-        "lng": meeting.longitude
+      "location": {
+        "coordinates": {
+          "lng": meeting.longitude,
+          "lat": meeting.latitude,
+        },
+        "address": meeting.address
       },
-      "address": meeting.address,
       // last 3 attributes are arrays with multiple options
       "yearlymeeting": meeting.yearlymeeting ? meeting.yearlymeeting.split(', ') : ["Unaffiliated"],
       "branch": meeting.branch ? meeting.branch.split(', ') : ["Unaffiliated"],

@@ -27,9 +27,9 @@ const meetingSchema = new Schema({
       required: 'Your meeting must have an address'
     }
   },
-  yearlymeeting: String,
-  branch: String, // conservative, FGC, FUM, EFCI, unaffiliated
-  worshipstyle: String, // programmed, unprogrammed, semi-programmed
+  yearlymeeting: [String],
+  branch: [String],
+  worshipstyle: [String],
   created: {
     type: Date,
     default: Date.now
