@@ -12,7 +12,6 @@ exports.addMeeting = (req, res) => {
 }
 
 exports.createMeeting = async (req, res) => {
-  // TODO: handle for errors with higher level function
   const meeting = new Meeting(req.body);
   await meeting.save();
   res.redirect('/');

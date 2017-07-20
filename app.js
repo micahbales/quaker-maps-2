@@ -3,6 +3,7 @@ const app = express();
 const routes = require('./routes/index');
 const bodyParser = require('body-parser');
 const helpers = require('./helpers');
+const errorHandlers = require('./handlers/errorHandlers');
 
 // view engine setup
 app.set('view engine', 'pug');
@@ -23,5 +24,22 @@ app.use((req, res, next) => {
 
 // after middlewares, let's handle our routes:
 app.use('/', routes);
+
+/* Error Handlers: */
+
+// If the above routes don't work, 404 them and forward to error handler
+app.use(errorHandlers.notFound);
+
+// Check if these errors are just validation errors
+app.use(errorHandlers.flashValidationErrors);
+
+// If not, this was a really bad error we didn't expect!
+if (app.get('env') === 'development') {
+  /* Development Error Handler - Prints stack trace */
+  app.use(errorHandlers.developmentErrors);
+}
+
+// production error handler (no stack trace)
+app.use(errorHandlers.productionErrors);
 
 module.exports = app;
