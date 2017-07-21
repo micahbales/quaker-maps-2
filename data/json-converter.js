@@ -5,6 +5,8 @@ const writePath = path.join(__dirname, 'northAmericaMeetings.json');
 const sourceJSON = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
 const newJSON = [];
 const slugs = require('slugs');
+const mongoose = require('mongoose');
+const dedupe  = require('./dedupe');
 
 // cycle through each entry from the source data
 // add a re-formatted object to the new collection
@@ -39,3 +41,6 @@ sourceJSON.forEach((meeting) => {
 fs.writeFileSync(writePath, `[${newJSON}]`, 'utf-8', (err) => {
   if (err) console.error(err);
 });
+
+// ensure that each slug is unique
+dedupe(writePath);
