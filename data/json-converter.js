@@ -23,6 +23,7 @@ sourceJSON.forEach((meeting) => {
       "state": meeting.state,
       "zip": meeting.zip,
       "location": {
+        "type": "Point",
         "coordinates": {
           "lng": meeting.longitude,
           "lat": meeting.latitude,
