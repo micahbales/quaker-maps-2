@@ -12,7 +12,7 @@ const meetingSchema = new Schema({
   slug: String,
   city: String,
   state: String,
-  zip: Number,
+  zip: String,
   location: {
     type: {
       type: String,

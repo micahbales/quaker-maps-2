@@ -5,7 +5,6 @@ const writePath = path.join(__dirname, 'northAmericaMeetings.json');
 const sourceJSON = JSON.parse(fs.readFileSync(sourcePath, 'utf-8'));
 const newJSON = [];
 const slugs = require('slugs');
-const mongoose = require('mongoose');
 const dedupe  = require('./dedupe');
 
 // cycle through each entry from the source data
@@ -14,7 +13,6 @@ sourceJSON.forEach((meeting) => {
 
   let newMeetingEntry =
     {
-      "_id": mongoose.Types.ObjectId(),
       "name": meeting.name,
       // the source data does not include a description, so let's create a stub
       "description": `${meeting.name} is a Quaker congregation in ${meeting.city}, ${meeting.state}.`,
@@ -24,11 +22,11 @@ sourceJSON.forEach((meeting) => {
       "zip": meeting.zip,
       "location": {
         "type": "Point",
-        "coordinates": {
-          "lng": meeting.longitude,
-          "lat": meeting.latitude,
-        },
-        "address": meeting.address
+        "coordinates": [
+          Number(meeting.longitude),
+          Number(meeting.latitude)
+        ],
+        "address": meeting.address || meeting.location
       },
       // last 3 attributes are arrays with multiple options
       "yearlymeeting": meeting.yearlymeeting ? meeting.yearlymeeting.split(', ') : ["Unaffiliated"],
