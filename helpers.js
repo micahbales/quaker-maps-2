@@ -7,7 +7,7 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
 // auto-populate menu items
 exports.menu = [
-  { slug: '/map', title: 'Maps', fa: 'globe', },
+  { slug: '/map', title: 'Map', fa: 'globe', },
   { slug: '/meetings', title: 'Meetings', fa: 'users' },
   { slug: '/meetings/add', title: 'Add Meeting', fa: 'plus-square' }
 ];
