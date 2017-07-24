@@ -22,7 +22,6 @@ async function loadMeetings() {
     console.log(e);
     process.exit();
   }
-
 };
 
 loadMeetings();
