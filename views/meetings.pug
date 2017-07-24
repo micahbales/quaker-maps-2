@@ -1,14 +1,6 @@
 extends layout
 
+include mixins/_meetingCard
+
 block content
-  h2= title
-  ul(style='list-style: none')
-    each meeting in meetings 
-      li 
-        h3 #{meeting.name}
-        p #{meeting.description}
-        p Address: #{meeting.location.address}, #{meeting.city}, #{meeting.state} #{meeting.zip}
-        p Geolocation: { Lat: #{meeting.location.coordinates[1]}, Lng: #{meeting.location.coordinates[0]} }
-        p Worship Style: #{meeting.worshipstyle}
-        p Yearly Meeting #{meeting.yearlymeeting}
-        p Branch: #{meeting.branch}
+  +meetingCard()
