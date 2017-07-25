@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise
 const Schema = mongoose.Schema;
+const slug = require('slugs');
 
 const meetingSchema = new Schema({
   name: {
@@ -34,6 +35,21 @@ const meetingSchema = new Schema({
     type: Date,
     default: Date.now
   }
+});
+
+meetingSchema.pre('save', async function(next) {
+  if (!this.isModified('name')) {
+    next(); // skip it
+    return; // stop this function from running
+  }
+  this.slug = slug(this.name);
+  // find other meetings that have a slug of slug, slug-1, slug-2
+  const slugRegEx = new RegExp(`^(${this.slug})((-[0-9]*$)?)$`, 'i');
+  const meetingsWithSlug = await this.constructor.find({ slug: slugRegEx });
+  if (meetingsWithSlug.length) {
+    this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
+  }
+  next();
 });
 
 module.exports = mongoose.model('Meeting', meetingSchema);

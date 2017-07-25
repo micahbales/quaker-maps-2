@@ -27,5 +27,5 @@ exports.addMeeting = (req, res) => {
 exports.createMeeting = async (req, res) => {
   const meeting = new Meeting(req.body);
   await meeting.save();
-  res.redirect('/');
+  res.redirect(`/meetings/${meeting.slug}`);
 };
