@@ -14,6 +14,9 @@
 
   .meeting__title {
     text-align: center;
+    a {
+      text-decoration: none;
+    }
   }
 
   .meeting__body {

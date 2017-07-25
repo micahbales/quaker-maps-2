@@ -61,6 +61,8 @@ li.nav__item {
   margin: 15px auto; }
   .meeting .meeting__title {
     text-align: center; }
+    .meeting .meeting__title a {
+      text-decoration: none; }
   .meeting .meeting__body {
     margin: 0 10%; }
     .meeting .meeting__body .meeting__description {

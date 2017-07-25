@@ -1,6 +1,7 @@
 mixin meetingCard(meeting)
   .meeting
-    h3.meeting__title #{meeting.name}
+    h2.meeting__title 
+      a(href=`/meetings/${meeting.slug}`) #{meeting.name}
     .meeting__body
       p.meeting__description #{meeting.description}
       .meeting__details
@@ -9,3 +10,4 @@ mixin meetingCard(meeting)
         p #[strong Worship Style:] #{meeting.worshipstyle}
         p #[strong Yearly Meeting:] #{meeting.yearlymeeting}
         p #[strong Branch:] #{meeting.branch}
+        p #[strong Slug:] #{meeting.slug}

@@ -1,14 +1,21 @@
 const mongoose = require('mongoose');
 const Meeting = mongoose.model('Meeting');
 
+exports.map = (req, res) => {
+  res.render('map', { title: 'Map' });
+};
+
 exports.getMeetings = async (req, res) => {
   const meetings = await Meeting.find();
 
   res.render('meetings', { title: 'All Meetings', meetings });
 };
 
-exports.map = (req, res) => {
-  res.render('map', { title: 'Map' });
+exports.getMeetingBySlug = async (req, res, next) => {
+  const meeting = await Meeting.findOne({ slug: req.params.slug });
+  if (!meeting) return next();
+
+  res.render('meeting', { title: meeting.name, meeting });
 };
 
 exports.addMeeting = (req, res) => {
