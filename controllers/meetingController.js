@@ -4,7 +4,7 @@ const Meeting = mongoose.model('Meeting');
 exports.getMeetings = async (req, res) => {
   const meetings = await Meeting.find();
 
-  res.render('meetings', { title: 'Meetings', meetings });
+  res.render('meetings', { title: 'All Meetings', meetings });
 };
 
 exports.map = (req, res) => {

@@ -2,9 +2,10 @@ mixin meetingCard(meeting)
   .meeting
     h3.meeting__title #{meeting.name}
     .meeting__body
-      p #{meeting.description}
-      p Address: #{meeting.location.address}, #{meeting.city}, #{meeting.state} #{meeting.zip}
-      p Geolocation: { Lat: #{meeting.location.coordinates[1]}, Lng: #{meeting.location.coordinates[0]} }
-      p Worship Style: #{meeting.worshipstyle}
-      p Yearly Meeting #{meeting.yearlymeeting}
-      p Branch: #{meeting.branch}
+      p.meeting__description #{meeting.description}
+      .meeting__details
+        p #[strong Address:] #{meeting.location.address}, #{meeting.city}, #{meeting.state} #{meeting.zip}
+        p #[strong Geolocation:] { Lat: #{meeting.location.coordinates[1]}, Lng: #{meeting.location.coordinates[0]} }
+        p #[strong Worship Style:] #{meeting.worshipstyle}
+        p #[strong Yearly Meeting:] #{meeting.yearlymeeting}
+        p #[strong Branch:] #{meeting.branch}

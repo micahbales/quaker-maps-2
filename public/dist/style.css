@@ -1,4 +1,4 @@
-.nav {
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville|Montserrat|Open+Sans);.nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -26,6 +26,59 @@ li.nav__item {
   color: black; }
   .nav__link--logo span {
     display: inline-block;
-    margin-left: 20px; }
+    margin-left: 20px;
+    font-family: 'Libre Baskerville'; }
+
+.meetings {
+  margin: 75px 0px; }
+  .meetings .meetings__title {
+    text-align: center; }
+
+.meeting {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 80%;
+  margin: 15px auto; }
+  .meeting .meeting__title {
+    text-align: center; }
+  .meeting .meeting__body {
+    margin: 0 10%; }
+    .meeting .meeting__body .meeting__description {
+      -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+              box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+      background-color: #b5b5b5;
+      border-radius: 5px;
+      padding: 2px;
+      text-align: center; }
+    .meeting .meeting__body .meeting__details {
+      -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+              box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.25);
+      background-color: #b5b5b5;
+      border-radius: 5px;
+      padding: 2px 10px;
+      margin: 10px 0px 20px 0px; }
+
+/*** Media Query Breakpoints ***/
+/* Default Styling is for Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .meeting {
+    width: 60%; } }
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .meeting {
+    width: 50%; } }
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .meeting {
+    width: 40%; } }
+
+body {
+  font-family: 'Open Sans', serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Baskerville', sans-serif; }
 
 /*# sourceMappingURL=style.css.map*/

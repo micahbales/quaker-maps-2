@@ -4,6 +4,6 @@ include mixins/_meetingCard
 
 block content
   .meetings  
-    h2.meetings__title= title
+    h1.meetings__title= title
     each meeting in meetings 
       +meetingCard(meeting)

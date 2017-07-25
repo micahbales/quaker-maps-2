@@ -1,1 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville|Montserrat|Open+Sans');
+
 @import 'partials/nav';
+@import 'partials/meetings';
+
+body {
+  font-family: 'Open Sans', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Baskerville', sans-serif;
+}
