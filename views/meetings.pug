@@ -3,4 +3,7 @@ extends layout
 include mixins/_meetingCard
 
 block content
-  +meetingCard()
+  .meetings  
+    h2.meetings__title= title
+    each meeting in meetings 
+      +meetingCard(meeting)
