@@ -1,0 +1,137 @@
+mixin meetingForm()
+  .meetingForm
+    h2.meetingForm__title= title 
+    form.meetingForm__body(method='POST' action='add')
+      label(for='name') Name
+      input#name(type='text' placeholder='Name of Meeting' name='name' autofocus required)
+      label(for='description') Description
+      input#description(type='textarea' placeholder='Description of Meeting' name='description')
+      label(for="address") Address
+      input(type="text" id="address" name="location[address]" value=(meeting.location && meeting.location.address ))
+      
+      //- latitude and longitude
+      label(for="lng") LNG 
+      input(type="text" id="lng" name="location[coordinates][0]" value=(meeting.location && meeting.location.coordinates[0]) required)
+      label(for="lat") LAT 
+      input(type="text" id="lat" name="location[coordinates][1]" value=(meeting.location && meeting.location.coordinates[1]) required)
+        
+      label(for='city') City
+      input#city(type='text' placeholder='Name of Meeting' name='city')
+      label(for='state') State/Province
+      select#state(name='state' required)
+        option(value='AL') Alabama
+        option(value='AK') Alaska
+        option(value='AZ') Arizona
+        option(value='AR') Arkansas
+        option(value='CA') California
+        option(value='CO') Colorado
+        option(value='CT') Connecticut
+        option(value='DE') Delware
+        option(value='DC') District of Columbia
+        option(value='FL') Florida
+        option(value='GA') Georgia
+        option(value='HI') Hawaii
+        option(value='ID') Idaho
+        option(value='IL') Illinois
+        option(value='IN') Indiana
+        option(value='IA') Iowa
+        option(value='KS') Kansas
+        option(value='KY') Kentucky
+        option(value='LA') Louisiana
+        option(value='ME') Maine
+        option(value='MD') Maryland
+        option(value='MA') Massachusetts
+        option(value='MI') Michigan
+        option(value='MN') Minnesota
+        option(value='MS') Mississippi
+        option(value='MO') Missouri
+        option(value='MT') Montana
+        option(value='NE') Nebraska
+        option(value='NV') Nevada
+        option(value='NH') New Hampshire
+        option(value='NJ') New Jersey
+        option(value='NM') New Mexico
+        option(value='NY') New York
+        option(value='NC') North Carolina
+        option(value='ND') North Dakota
+        option(value='OH') Ohio
+        option(value='OK') Oklahoma
+        option(value='OR') Oregon
+        option(value='PA') Pennsylvania
+        option(value='RI') Rhode Island
+        option(value='SC') South Carolina
+        option(value='SD') South Dakota
+        option(value='TN') Tennessee
+        option(value='TX') Texas
+        option(value='UT') Utah
+        option(value='VT') Vermont
+        option(value='VA') Virginia
+        option(value='WA') Washington
+        option(value='WV') West Virginia
+        option(value='WI') Wisconsin
+        option(value='WY') Wyoming
+        option(value='AB') Alberta
+        option(value='BC') British Columbia
+        option(value='NB') New Brunswick
+        option(value='NL') Newfoundland and Labrador
+        option(value='NS') Nova Scotia
+        option(value='NT') Northwest Territories
+        option(value='NU') Nunavut
+        option(value='ON') Ontario
+        option(value='PE') Prince Edward Island
+        option(value='QC') Quebec
+        option(value='SK') Saskatchewan
+        option(value='YT') Yukon
+      label(for='yearlymeeting') Yearly Meeting (Select 1 or More)
+      select#yearlymeeting(name='yearlymeeting' size='3' multiple required)
+        option(value='Unaffiliated') Unaffiliated
+        option(value='Alaska Friends Conference') Alaska Friends Conference
+        option(value='Alaska YM') Alaska YM
+        option(value='Baltimore YM') Baltimore YM
+        option(value='Canadian YM') Canadian YM
+        option(value='Central YM') Central YM
+        option(value='EFC - Eastern Region') EFC - Eastern Region
+        option(value='EFC - Mid-America YM') EFC - Mid-America YM
+        option(value='EFC - Southwest') EFC - Southwest
+        option(value='Friends Of Jesus Fellowship') Friends Of Jesus Fellowship
+        option(value='Great Plains YM') Great Plains YM
+        option(value='Illinois YM') Illinois YM
+        option(value='Indiana YM') Indiana YM
+        option(value='Intermountain YM') Intermountain YM
+        option(value='Iowa (C)') Iowa (C)
+        option(value='Iowa (FUM)') Iowa (FUM)
+        option(value='JA de M�xico') JA de México
+        option(value='Lake Erie YM') Lake Erie YM
+        option(value='Missouri Valley FC') Missouri Valley FC
+        option(value='New Association') New Association
+        option(value='New England YM') New England YM
+        option(value='New York YM') New York YM
+        option(value='North Carolina (C)') North Carolina (C)
+        option(value='North Carolina (FUM)') North Carolina (FUM)
+        option(value='North Pacific YM') North Pacific YM
+        option(value='Northern YM') Northern YM
+        option(value='Ohio Valley YM') Ohio Valley YM
+        option(value='Ohio YM') Ohio YM
+        option(value='Pacific YM') Pacific YM
+        option(value='Philadelphia YM') Philadelphia YM
+        option(value='Piedmont Friends Fellowship/YM') Piedmont Friends Fellowship/YM
+        option(value='Rocky Mountain YM') Rocky Mountain YM
+        option(value='South Central YM') South Central YM
+        option(value='Southeastern YM') Southeastern YM
+        option(value='Southern Appalachian YMA') Southern Appalachian YMA
+        option(value='Western Assn') Western Assn
+        option(value='Western YM') Western YM
+        option(value='Wilmington YM') Wilmington YM
+      label(for='branch') Branch (Select 1 or More)
+      select#branch(name='branch' size='3' multiple required)
+        option(value='Unaffiliated') Unaffiliated
+        option(value='Conservative') Conservative
+        option(value='Evangelical Friends Church Intl') Evangelical Friends Church Intl
+        option(value='Friends General Conference') Friends General Conference
+        option(value='Friends United Meeting') Friends United Meeting
+      label(for='worshipstyle') Worship Style (Select 1 or More)
+      select#worshipstyle(name='worshipstyle' size='3' multiple required)
+        option(value='Programmed') Programmed
+        option(value='Unprogrammed') Unprogrammed
+        option(value='Semi-programmed') Semi-programmed
+      input.button(type='submit' value='Submit')
