@@ -6,7 +6,7 @@
     "node": ">= 8.1.4"
   },
   "scripts": {
-    "start": "nodemon ./start.js",
+    "start": "node ./start.js",
     "dev": "concurrently \"npm run watch\" \"npm run assets\"",
     "assets": "webpack -w",
     "watch": "nodemon ./start.js",
