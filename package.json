@@ -6,8 +6,8 @@
     "node": ">= 8.1.4"
   },
   "scripts": {
-    "prod": "nodemon ./start.js",
-    "start": "concurrently \"npm run watch\" \"npm run assets\"",
+    "start": "nodemon ./start.js",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\"",
     "assets": "webpack -w",
     "watch": "nodemon ./start.js",
     "test": "mocha"
