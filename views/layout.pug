@@ -21,7 +21,13 @@ html
                 span #{item.title}
     
     block messages 
-      //- flash messages go here
+      if locals.flashes
+        //- each flash message has a category, which serves as key for the message
+        - const categories = Object.keys(locals.flashes);
+          each category in categories
+            each message in flashes[category]
+              .flash(class=`flash--${category}`)
+              p.flash__text #{message}
     
     .content 
       block content 

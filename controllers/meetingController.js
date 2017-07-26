@@ -21,11 +21,14 @@ exports.getMeetingBySlug = async (req, res, next) => {
 exports.addMeeting = (req, res) => {
   // create empty object to recieve meeting data from form
   const meeting = {};
+
   res.render('editMeeting', { title: 'Add Meeting', meeting } );
 };
 
 exports.createMeeting = async (req, res) => {
   const meeting = new Meeting(req.body);
   await meeting.save();
+
+  req.flash('success', '${meeting.name} has been created!');
   res.redirect(`/meetings/${meeting.slug}`);
 };

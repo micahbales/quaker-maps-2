@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
+const mongoose = require('mongoose');
 const routes = require('./routes/index');
 const bodyParser = require('body-parser');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // view engine setup
 app.set('view engine', 'pug');
@@ -15,9 +20,26 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// import helpers
+// populates req.cookies with any cookies that came long with the request
+app.use(cookieParser());
+
+// sessions allow storing of data between requests
+// this allows us to use flash messages, for example
+app.use(session({
+  secret: process.env.SECRET,
+  key: process.env.KEY,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+// add flash messages
+app.use(flash());
+
+// pass helpers & flashes to templates
 app.use((req, res, next) => {
   res.locals.h = helpers;
+  res.locals.flashes = req.flash();
   res.locals.currentPath = req.path;
   next();
 });
