@@ -1,0 +1,38 @@
+.flashes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.flash {
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
+  justify-content: stretch;
+}
+
+/*** Media Query Breakpoints ***/
+/* Default Styling is for Extra Small Devices, Phones */
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .flashes {
+    width: 70%;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .flashes {
+    width: 60%;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .flashes {
+    width: 50%;
+  }
+}

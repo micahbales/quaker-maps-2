@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const Meeting = mongoose.model('Meeting');
 
 exports.map = (req, res) => {
+  req.flash('success', 'yay!!');
+  req.flash('info', 'i see.');
+  req.flash('error', 'watch out!!');
   res.render('map', { title: 'Map' });
 };
 

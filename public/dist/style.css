@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville|Open+Sans);.nav {
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville|Open+Sans);.nav__section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6,19 +6,20 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-bottom: 5%; }
 
 .nav__item {
   width: 105px;
-  height: 105px; }
-
-li.nav__item {
+  height: 105px;
   list-style: none; }
-  li.nav__item i {
+  .nav__item i {
     font-size: 75px;
     color: #56332B;
-    margin-top: 20px;
-    margin-left: 10px; }
+    margin-top: 2%;
+    margin-left: 1%; }
 
 .nav__link--logo {
   text-align: center;
@@ -26,8 +27,44 @@ li.nav__item {
   color: black; }
   .nav__link--logo span {
     display: inline-block;
-    margin-left: 20px;
     font-family: 'Libre Baskerville'; }
+
+.flashes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  display: block; }
+
+.flash {
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
+  -webkit-box-pack: stretch;
+      -ms-flex-pack: stretch;
+          justify-content: stretch; }
+
+/*** Media Query Breakpoints ***/
+/* Default Styling is for Extra Small Devices, Phones */
+/* Small Devices, Tablets */
+@media only screen and (min-width: 768px) {
+  .flashes {
+    width: 70%; } }
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width: 992px) {
+  .flashes {
+    width: 60%; } }
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 1200px) {
+  .flashes {
+    width: 50%; } }
 
 .addMeeting {
   width: 50%;

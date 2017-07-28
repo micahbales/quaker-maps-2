@@ -10,24 +10,25 @@ html
       //- header/navbar
       header.top
         nav.nav
-          .nav__section.nav__section--pages 
+          .nav__section 
             li.nav__item
               a.nav__link.nav__link--logo(href="/map")
                 != h.icon('pug')
-          each item in h.menu
-            li.nav__item 
-              a.nav__link.nav__link--logo(href=item.slug, class=currentPath.startsWith(item.slug) ? 'nav__link--active' : '')
-                i(class=`fa fa-${item.fa}` aria-hidden="true")
-                span #{item.title}
+            each item in h.menu
+              li.nav__item 
+                a.nav__link.nav__link--logo(href=item.slug, class=currentPath.startsWith(item.slug) ? 'nav__link--active' : '')
+                  i(class=`fa fa-${item.fa}` aria-hidden="true")
+                  span #{item.title}
     
     block messages 
       if locals.flashes
-        //- each flash message has a category, which serves as key for the message
-        - const categories = Object.keys(locals.flashes);
-          each category in categories
-            each message in flashes[category]
-              .flash(class=`flash--${category}`)
-              p.flash__text #{message}
+        .flashes
+          //- each flash message has a category, which serves as key for the message
+          - const categories = Object.keys(locals.flashes);
+            each category in categories
+              each message in flashes[category]
+                .flash(class=`flash--${category}`)
+                  p.flash__text #{message}
     
     .content 
       block content 
