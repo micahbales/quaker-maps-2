@@ -25,8 +25,9 @@
   text-align: center;
   text-decoration: none;
   color: black; }
-  .nav__link--logo span {
-    display: inline-block;
+  .nav__link--logo .nav__title {
+    display: block;
+    margin-right: 30px;
     font-family: 'Libre Baskerville'; }
 
 .flashes {
@@ -42,12 +43,40 @@
   display: block; }
 
 .flash {
-  border: 1px solid black;
+  border-radius: 5px;
   margin: 10px;
   text-align: center;
   -webkit-box-pack: stretch;
       -ms-flex-pack: stretch;
-          justify-content: stretch; }
+          justify-content: stretch;
+  opacity: 1;
+  -webkit-animation: fade 6s linear;
+          animation: fade 6s linear; }
+
+.flash--info {
+  border: 5px solid #aaa; }
+
+.flash--success {
+  border: 5px solid green; }
+
+.flash--error {
+  border: 5px solid red; }
+
+/*** Animations ***/
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0; }
+  20%, 80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes fade {
+  0% {
+    opacity: 0; }
+  20%, 80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 
 /*** Media Query Breakpoints ***/
 /* Default Styling is for Extra Small Devices, Phones */

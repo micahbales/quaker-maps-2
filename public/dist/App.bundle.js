@@ -74,6 +74,18 @@ __webpack_require__(1);
 
 var _bling = __webpack_require__(2);
 
+/* flash messages disappear after being displayed */
+/* import sass into webpack pipeline */
+window.setTimeout(fadeFlashes, 6000);
+
+/* import javascript modules here */
+
+function fadeFlashes() {
+  (0, _bling.$$)('.flash').forEach(function (element) {
+    element.setAttribute('style', 'display: none;');
+  });
+};
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {

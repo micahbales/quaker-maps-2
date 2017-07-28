@@ -7,10 +7,31 @@
 }
 
 .flash {
-  border: 1px solid black;
+  border-radius: 5px;
   margin: 10px;
   text-align: center;
   justify-content: stretch;
+  opacity: 1;
+  animation: fade 6s linear;
+}
+
+.flash--info {
+  border: 5px solid #aaa;
+}
+
+.flash--success {
+  border: 5px solid green;
+}
+
+.flash--error {
+  border: 5px solid red;
+}
+
+/*** Animations ***/
+@keyframes fade {
+  0% { opacity: 0 }
+  20%, 80% { opacity: 1 }
+  100% { opacity: 0 }
 }
 
 /*** Media Query Breakpoints ***/

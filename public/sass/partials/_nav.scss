@@ -22,9 +22,9 @@
   text-decoration: none;
   color: black;
 
-  span {
-    display: inline-block;
-    // margin-left: 20px;
+  .nav__title {
+    display: block;
+    margin-right: 30px;
     font-family: 'Libre Baskerville'
   }
 }
