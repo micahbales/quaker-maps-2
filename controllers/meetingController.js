@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 const Meeting = mongoose.model('Meeting');
 
 exports.map = (req, res) => {
-  req.flash('success', 'yay!!');
-  req.flash('info', 'i see.');
-  req.flash('error', 'watch out!!');
   res.render('map', { title: 'Map' });
 };
 
@@ -32,6 +29,6 @@ exports.createMeeting = async (req, res) => {
   const meeting = new Meeting(req.body);
   await meeting.save();
 
-  req.flash('success', '${meeting.name} has been created!');
+  req.flash('success', `${meeting.name} has been created!`);
   res.redirect(`/meetings/${meeting.slug}`);
 };
