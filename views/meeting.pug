@@ -4,5 +4,5 @@ include mixins/_meetingCard
 
 block content    
   +meetingCard(meeting)
-  form.delete-meeting-form(method='POST' action='/meetings/delete')
+  form.delete-meeting-form(method='POST' action=`/meetings/delete/${meeting.slug}?_method=DELETE`)
     input.button.button--delete(type='submit' value='DELETE MEETING' onclick='return confirm("Are you sure you want to delete this meeting? (Cannot be undone)")')

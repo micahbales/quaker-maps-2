@@ -32,3 +32,10 @@ exports.createMeeting = async (req, res) => {
   req.flash('success', `${meeting.name} has been created!`);
   res.redirect(`/meetings/${meeting.slug}`);
 };
+
+exports.deleteMeeting = async (req, res) => {
+  const slug = req.params.slug;
+  const meeting = await Meeting.remove({ slug });
+  req.flash('success', 'meeting successfully deleted!');
+  res.redirect(`/meetings`);
+};
