@@ -38,18 +38,31 @@
   }
 }
 
-.delete-meeting-form {
+.update-meeting, .delete-meeting-form {
   display: flex;
   justify-content: center;
 }
 
-.button--delete {
-  background-color: red;
+.button--update, .button--delete {
   border: 0;
   box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
+  margin: 5px;
+}
+
+.button--update {
+  background-color: #56332B;
+  color: white;
+  padding: 0px 10px;
+  text-decoration: none;
+}
+
+.button--delete {
+  background-color: red;
+  color: white;
+  padding: 10px 5px;
 }
 
 /*** Media Query Breakpoints ***/
