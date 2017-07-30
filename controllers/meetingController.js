@@ -33,10 +33,15 @@ exports.createMeeting = async (req, res) => {
   res.redirect(`/meetings/${meeting.slug}`);
 };
 
+exports.editMeeting = async (req, res) => {
+  const _id = req.params.id;
+  const meeting = await Meeting.findOne({ _id });
+  res.render('editMeeting', { title: `Update ${meeting.name}`, meeting})
+};
+
 exports.deleteMeeting = async (req, res) => {
   const _id = req.params.id;
   const meeting = await Meeting.remove({ _id });
-  console.log(meeting._id, meeting.id, _id, req.params.id, meeting);
   req.flash('success', 'meeting successfully deleted!');
   res.redirect(`/meetings`);
 };

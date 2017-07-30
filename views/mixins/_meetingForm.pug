@@ -3,9 +3,9 @@ mixin meetingForm()
     h2.meetingForm__title= title 
     form.meetingForm__body(method='POST' action='add')
       label(for='name') Name
-      input#name(type='text' placeholder='Name of Meeting' name='name' autofocus required)
+      input#name(type='text' placeholder='Name of Meeting' name='name' value=(meeting.name) autofocus required)
       label(for='description') Description
-      input#description(type='textarea' placeholder='Description of Meeting' name='description')
+      input#description(type='textarea' placeholder='Description of Meeting' value=(meeting.description) name='description')
       label(for="address") Address
       input(type="text" id="address" name="location[address]" value=(meeting.location && meeting.location.address ))
       
@@ -16,9 +16,9 @@ mixin meetingForm()
       input(type="text" id="lat" name="location[coordinates][1]" value=(meeting.location && meeting.location.coordinates[1]) required)
         
       label(for='city') City
-      input#city(type='text' placeholder='Name of Meeting' name='city')
+      input#city(type='text' placeholder='Name of Meeting' name='city' value=(meeting.city))
       label(for='state') State/Province
-      select#state(name='state' required)
+      select#state(name='state' value=(meeting.state) required)
         option(value='AL') Alabama
         option(value='AK') Alaska
         option(value='AZ') Arizona
@@ -26,7 +26,7 @@ mixin meetingForm()
         option(value='CA') California
         option(value='CO') Colorado
         option(value='CT') Connecticut
-        option(value='DE') Delware
+        option(value='DE') Delaware
         option(value='DC') District of Columbia
         option(value='FL') Florida
         option(value='GA') Georgia

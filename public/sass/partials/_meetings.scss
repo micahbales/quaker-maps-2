@@ -38,12 +38,12 @@
   }
 }
 
-.update-meeting, .delete-meeting-form {
+.edit-meeting, .delete-meeting-form {
   display: flex;
   justify-content: center;
 }
 
-.button--update, .button--delete {
+.button--edit, .button--delete {
   border: 0;
   box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.25);
   border-radius: 5px;
@@ -52,7 +52,7 @@
   margin: 5px;
 }
 
-.button--update {
+.button--edit {
   background-color: #56332B;
   color: white;
   padding: 0px 10px;

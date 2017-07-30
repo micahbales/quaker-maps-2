@@ -4,8 +4,8 @@ include mixins/_meetingCard
 
 block content    
   +meetingCard(meeting)
-  .update-meeting
-    a(href=`/meetings/update/${meeting.slug}` class='button button--update')
+  .edit-meeting
+    a(href=`/meetings/${meeting.id}/edit` class='button button--edit')
       p Edit Meeting
   form.delete-meeting-form(method='POST' action=`/meetings/${meeting._id}/delete`)
     input.button.button--delete(type='submit' value='DELETE MEETING' onclick='return confirm("Are you sure you want to delete this meeting? (Cannot be undone)")')

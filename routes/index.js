@@ -16,6 +16,8 @@ router.get('/meetings/:slug', catchErrors(meetingController.getMeetingBySlug));
 router.get('/meetings/add', meetingController.addMeeting);
 /* meeting create page - action */
 router.post('/meetings/add', catchErrors(meetingController.createMeeting));
+/* meeting edit */
+router.get('/meetings/:id/edit', catchErrors(meetingController.editMeeting));
 /* meeting delete */
 router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting));
 
