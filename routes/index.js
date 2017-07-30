@@ -17,6 +17,6 @@ router.get('/meetings/add', meetingController.addMeeting);
 /* meeting create page - action */
 router.post('/meetings/add', catchErrors(meetingController.createMeeting));
 /* meeting delete */
-router.post('/meetings/delete/:slug', catchErrors(meetingController.deleteMeeting));
+router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting));
 
 module.exports = router;

@@ -34,8 +34,9 @@ exports.createMeeting = async (req, res) => {
 };
 
 exports.deleteMeeting = async (req, res) => {
-  const slug = req.params.slug;
-  const meeting = await Meeting.remove({ slug });
+  const _id = req.params.id;
+  const meeting = await Meeting.remove({ _id });
+  console.log(meeting._id, meeting.id, _id, req.params.id, meeting);
   req.flash('success', 'meeting successfully deleted!');
   res.redirect(`/meetings`);
 };
