@@ -18,70 +18,13 @@ mixin meetingForm()
       label(for='city') City
       input#city(type='text' placeholder='Name of Meeting' name='city' value=(meeting.city))
       label(for='state') State/Province
-      select#state(name='state' value=(meeting.state) required)
-        option(value='AL') Alabama
-        option(value='AK') Alaska
-        option(value='AZ') Arizona
-        option(value='AR') Arkansas
-        option(value='CA') California
-        option(value='CO') Colorado
-        option(value='CT') Connecticut
-        option(value='DE') Delaware
-        option(value='DC') District of Columbia
-        option(value='FL') Florida
-        option(value='GA') Georgia
-        option(value='HI') Hawaii
-        option(value='ID') Idaho
-        option(value='IL') Illinois
-        option(value='IN') Indiana
-        option(value='IA') Iowa
-        option(value='KS') Kansas
-        option(value='KY') Kentucky
-        option(value='LA') Louisiana
-        option(value='ME') Maine
-        option(value='MD') Maryland
-        option(value='MA') Massachusetts
-        option(value='MI') Michigan
-        option(value='MN') Minnesota
-        option(value='MS') Mississippi
-        option(value='MO') Missouri
-        option(value='MT') Montana
-        option(value='NE') Nebraska
-        option(value='NV') Nevada
-        option(value='NH') New Hampshire
-        option(value='NJ') New Jersey
-        option(value='NM') New Mexico
-        option(value='NY') New York
-        option(value='NC') North Carolina
-        option(value='ND') North Dakota
-        option(value='OH') Ohio
-        option(value='OK') Oklahoma
-        option(value='OR') Oregon
-        option(value='PA') Pennsylvania
-        option(value='RI') Rhode Island
-        option(value='SC') South Carolina
-        option(value='SD') South Dakota
-        option(value='TN') Tennessee
-        option(value='TX') Texas
-        option(value='UT') Utah
-        option(value='VT') Vermont
-        option(value='VA') Virginia
-        option(value='WA') Washington
-        option(value='WV') West Virginia
-        option(value='WI') Wisconsin
-        option(value='WY') Wyoming
-        option(value='AB') Alberta
-        option(value='BC') British Columbia
-        option(value='NB') New Brunswick
-        option(value='NL') Newfoundland and Labrador
-        option(value='NS') Nova Scotia
-        option(value='NT') Northwest Territories
-        option(value='NU') Nunavut
-        option(value='ON') Ontario
-        option(value='PE') Prince Edward Island
-        option(value='QC') Quebec
-        option(value='SK') Saskatchewan
-        option(value='YT') Yukon
+      - const stateOptions = [{value:'AL', text:'Alabama'}, {value:'AK', text:'Alaska'}, {value:'AZ', text:'Arizona'}, {value:'AR', text:'Arkansas'}, {value:'CA', text:'California'}, {value:'CO', text:'Colorado'}, {value:'CT', text:'Connecticut'}, {value:'DE', text:'Delaware'}, {value:'DC', text:'District of Columbia'}, {value:'FL', text:'Florida'}, {value:'GA', text:'Georgia'}, {value:'HI', text:'Hawaii'}, {value:'ID', text:'Idaho'}, {value:'IL', text:'Illinois'}, {value:'IN', text:'Indiana'}, {value:'IA', text:'Iowa'}, {value:'KS', text:'Kansas'}, {value:'KY', text:'Kentucky'}, {value:'LA', text:'Louisiana'}, {value:'ME', text:'Maine'}, {value:'MD', text:'Maryland'}, {value:'MA', text:'Massachusetts'}, {value:'MI', text:'Michigan'}, {value:'MN', text:'Minnesota'}, {value:'MS', text:'Mississippi'}, {value:'MO', text:'Missouri'}, {value:'MT', text:'Montana'}, {value:'NE', text:'Nebraska'}, {value:'NV', text:'Nevada'}, {value:'NH', text:'New Hampshire'}, {value:'NJ', text:'New Jersey'}, {value:'NM', text:'New Mexico'}, {value:'NY', text:'New York'}, {value:'NC', text:'North Carolina'}, {value:'ND', text:'North Dakota'}, {value:'OH', text:'Ohio'}, {value:'OK', text:'Oklahoma'}, {value:'OR', text:'Oregon'}, {value:'PA', text:'Pennsylvania'}, {value:'RI', text:'Rhode Island'}, {value:'SC', text:'South Carolina'}, {value:'SD', text:'South Dakota'}, {value:'TN', text:'Tennessee'}, {value:'TX', text:'Texas'}, {value:'UT', text:'Utah'}, {value:'VT', text:'Vermont'}, {value:'VA', text:'Virginia'}, {value:'WA', text:'Washington'}, {value:'WV', text:'West Virginia'}, {value:'WI', text:'Wisconsin'}, {value:'WY', text:'Wyoming'}, {value:'AB', text:'Alberta'}, {value:'BC', text:'British Columbia'}, {value:'NB', text:'New Brunswick'}, {value:'NL', text:'Newfoundland and Labrador'}, {value:'NS', text:'Nova Scotia'}, {value:'NT', text:'Northwest Territories'}, {value:'NU', text:'Nunavut'}, {value:'ON', text:'Ontario'}, {value:'PE', text:'Prince Edward Island'}, {value:'QC', text:'Quebec'}, {value:'SK', text:'Saskatchewan'}, {value:'YT', text:'Yukon'}]
+      select#state(name='state' required)
+        each option in stateOptions
+          if (option.value === meeting.state) 
+            option(value=(option.value) selected) #{option.text}
+          else
+            option(value=(option.value)) #{option.text}
       label(for='yearlymeeting') Yearly Meeting (Select 1 or More)
       select#yearlymeeting(name='yearlymeeting' size='3' multiple required)
         option(value='Unaffiliated') Unaffiliated
