@@ -39,6 +39,12 @@ exports.editMeeting = async (req, res) => {
   res.render('editMeeting', { title: `Update ${meeting.name}`, meeting})
 };
 
+exports.updateMeeting = async (req, res) => {
+  const _id = req.params.id
+  const meeting = await Meeting.findOne({ _id });
+  res.render('meeting', { title: meeting.name, meeting });
+};
+
 exports.deleteMeeting = async (req, res) => {
   const _id = req.params.id;
   const meeting = await Meeting.remove({ _id });

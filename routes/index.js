@@ -18,6 +18,8 @@ router.get('/meetings/add', meetingController.addMeeting);
 router.post('/meetings/add', catchErrors(meetingController.createMeeting));
 /* meeting edit */
 router.get('/meetings/:id/edit', catchErrors(meetingController.editMeeting));
+/* meeting update */
+router.post('/meetings/:id/add', catchErrors(meetingController.updateMeeting));
 /* meeting delete */
 router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting));
 
