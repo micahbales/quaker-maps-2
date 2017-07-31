@@ -4,8 +4,10 @@ mixin meetingForm()
     form.meetingForm__body(method='POST' action='add')
       label(for='name') Name
       input#name(type='text' placeholder='Name of Meeting' name='name' value=(meeting.name) autofocus required)
+      
       label(for='description') Description
       input#description(type='textarea' placeholder='Description of Meeting' value=(meeting.description) name='description')
+      
       label(for="address") Address
       input(type="text" id="address" name="location[address]" value=(meeting.location && meeting.location.address ))
       
@@ -35,16 +37,23 @@ mixin meetingForm()
             option(value=(yearlymeeting.value) selected) #{yearlymeeting.value}
           else 
             option(value=(yearlymeeting.value)) #{yearlymeeting.value}
+      
       label(for='branch') Branch (Select 1 or More)
+      - const branchOptions = [{value: 'Unaffiliated'}, {value: 'Conservative'}, {value: 'Evangelical Friends Church Intl'}, {value: 'Friends General Conference'}, {value: 'Friends United Meeting'}]
       select#branch(name='branch' size='3' multiple required)
-        option(value='Unaffiliated') Unaffiliated
-        option(value='Conservative') Conservative
-        option(value='Evangelical Friends Church Intl') Evangelical Friends Church Intl
-        option(value='Friends General Conference') Friends General Conference
-        option(value='Friends United Meeting') Friends United Meeting
+        each branch in branchOptions
+          if (meeting.branch.includes(branch.value))
+            option(value=(branch.value) selected) #{branch.value}
+          else
+            option(value=(branch.value)) #{branch.value}
+      
       label(for='worshipstyle') Worship Style (Select 1 or More)
+      - const worshipstyleOptions = [{value: 'Programmed'}, {value: 'Unprogrammed'}, {value: 'Semi-programmed'}]
       select#worshipstyle(name='worshipstyle' size='3' multiple required)
-        option(value='Programmed') Programmed
-        option(value='Unprogrammed') Unprogrammed
-        option(value='Semi-programmed') Semi-programmed
+        each worshipstyle in worshipstyleOptions
+          if (meeting.worshipstyle.includes(worshipstyle.value))
+            option(value=(worshipstyle.value) selected) #{worshipstyle.value}
+          else
+            option(value=(worshipstyle.value)) #{worshipstyle.value}
+            
       input.button(type='submit' value='Submit')
