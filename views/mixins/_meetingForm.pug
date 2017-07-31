@@ -30,10 +30,10 @@ mixin meetingForm()
             option(value=(option.value)) #{option.text}
       
       label(for='yearlymeeting') Yearly Meeting (Select 1 or More)
-      - const yearlymeetingOptions = [{value: 'Unaffiliated'}, {value: 'Alaska Friends Conference'}, {value: 'Alaska YM'}, {value: 'Baltimore YM'}, {value: 'Canadian YM'}, {value: 'Central YM'}, {value: 'EFC - Eastern Region'}, {value: 'EFC - Mid-America YM'}, {value: 'EFC - Southwest'}, {value: 'Friends of Jesus Fellowship'}, {value: 'Great Plains YM'}, {value: 'Illinois YM'}, {value: 'Indiana YM'}, {value: 'Intermountain YM'}, {value: 'Iowa (C)'}, {value: 'Iowa (FUM)'}, {value: 'JA de M�xico'}, {value: 'Lake Erie YM'}, {value: 'Missouri Valley FC'}, {value: 'New Association'}, {value: 'New England YM'}, {value: 'New York YM'}, {value: 'North Carolina (C)'}, {value: 'North Carolina (FUM)'}, {value: 'North Pacific YM'}, {value: 'Northern YM'}, {value: 'Northwest YM'}, {value: 'Ohio Valley YM'}, {value: 'Ohio YM'}, {value: 'Pacific YM'}, {value: 'Philadelphia YM'}, {value: 'Piedmont Friends Fellowship/YM'}, {value: 'Rocky Mountain YM'}, {value: 'South Central YM'}, {value: 'Southeastern YM'}, {value: 'Southern Appalachian YMA'}, {value: 'Western Assn'}, {value: 'Western YM'}, {value: 'Wilmington YM'}]
+      - const yearlymeetingOptions = [{value: 'Unaffiliated'}, {value: 'Alaska Friends Conference'}, {value: 'Alaska YM'}, {value: 'Baltimore YM'}, {value: 'Canadian YM'}, {value: 'Central YM'}, {value: 'EFC - Eastern Region'}, {value: 'EFC - Mid-America YM'}, {value: 'EFC - Southwest'}, {value: 'Friends Of Jesus Fellowship'}, {value: 'Great Plains YM'}, {value: 'Illinois YM'}, {value: 'Indiana YM'}, {value: 'Intermountain YM'}, {value: 'Iowa (C)'}, {value: 'Iowa (FUM)'}, {value: 'JA de M�xico'}, {value: 'Lake Erie YM'}, {value: 'Missouri Valley FC'}, {value: 'New Association'}, {value: 'New England YM'}, {value: 'New York YM'}, {value: 'North Carolina (C)'}, {value: 'North Carolina (FUM)'}, {value: 'North Pacific YM'}, {value: 'Northern YM'}, {value: 'Northwest YM'}, {value: 'Ohio Valley YM'}, {value: 'Ohio YM'}, {value: 'Pacific YM'}, {value: 'Philadelphia YM'}, {value: 'Piedmont Friends Fellowship/YM'}, {value: 'Rocky Mountain YM'}, {value: 'South Central YM'}, {value: 'Southeastern YM'}, {value: 'Southern Appalachian YMA'}, {value: 'Western Assn'}, {value: 'Western YM'}, {value: 'Wilmington YM'}]
       select#yearlymeeting(name='yearlymeeting' size='3' multiple required)
         each yearlymeeting in yearlymeetingOptions
-          if (meeting.yearlymeeting.includes(yearlymeeting.value))
+          if (meeting.yearlymeeting && meeting.yearlymeeting.includes(yearlymeeting.value))
             option(value=(yearlymeeting.value) selected) #{yearlymeeting.value}
           else 
             option(value=(yearlymeeting.value)) #{yearlymeeting.value}
@@ -42,7 +42,7 @@ mixin meetingForm()
       - const branchOptions = [{value: 'Unaffiliated'}, {value: 'Conservative'}, {value: 'Evangelical Friends Church Intl'}, {value: 'Friends General Conference'}, {value: 'Friends United Meeting'}]
       select#branch(name='branch' size='3' multiple required)
         each branch in branchOptions
-          if (meeting.branch.includes(branch.value))
+          if (meeting.branch && meeting.branch.includes(branch.value))
             option(value=(branch.value) selected) #{branch.value}
           else
             option(value=(branch.value)) #{branch.value}
@@ -51,7 +51,7 @@ mixin meetingForm()
       - const worshipstyleOptions = [{value: 'Programmed'}, {value: 'Unprogrammed'}, {value: 'Semi-programmed'}]
       select#worshipstyle(name='worshipstyle' size='3' multiple required)
         each worshipstyle in worshipstyleOptions
-          if (meeting.worshipstyle.includes(worshipstyle.value))
+          if (meeting.worshipstyle && meeting.worshipstyle.includes(worshipstyle.value))
             option(value=(worshipstyle.value) selected) #{worshipstyle.value}
           else
             option(value=(worshipstyle.value)) #{worshipstyle.value}

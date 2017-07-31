@@ -95,10 +95,10 @@
   .flashes {
     width: 50%; } }
 
-.addMeeting {
+.meetingForm {
   width: 50%;
   margin: 0 auto; }
-  .addMeeting h2 {
+  .meetingForm h2 {
     text-align: center; }
 
 .meetingForm__body {
