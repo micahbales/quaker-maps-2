@@ -9,14 +9,15 @@ mixin meetingForm()
       label(for="address") Address
       input(type="text" id="address" name="location[address]" value=(meeting.location && meeting.location.address ))
       
-      //- latitude and longitude
-      label(for="lng") LNG 
-      input(type="text" id="lng" name="location[coordinates][0]" value=(meeting.location && meeting.location.coordinates[0]) required)
-      label(for="lat") LAT 
-      input(type="text" id="lat" name="location[coordinates][1]" value=(meeting.location && meeting.location.coordinates[1]) required)
+      .geolocation
+        label(for="lng") Longitude
+        input(type="text" id="lng" name="location[coordinates][0]" value=(meeting.location && meeting.location.coordinates[0]) required)
+        label(for="lat") Latitude
+        input(type="text" id="lat" name="location[coordinates][1]" value=(meeting.location && meeting.location.coordinates[1]) required)
         
       label(for='city') City
       input#city(type='text' placeholder='Name of Meeting' name='city' value=(meeting.city))
+      
       label(for='state') State/Province
       - const stateOptions = [{value:'AL', text:'Alabama'}, {value:'AK', text:'Alaska'}, {value:'AZ', text:'Arizona'}, {value:'AR', text:'Arkansas'}, {value:'CA', text:'California'}, {value:'CO', text:'Colorado'}, {value:'CT', text:'Connecticut'}, {value:'DE', text:'Delaware'}, {value:'DC', text:'District of Columbia'}, {value:'FL', text:'Florida'}, {value:'GA', text:'Georgia'}, {value:'HI', text:'Hawaii'}, {value:'ID', text:'Idaho'}, {value:'IL', text:'Illinois'}, {value:'IN', text:'Indiana'}, {value:'IA', text:'Iowa'}, {value:'KS', text:'Kansas'}, {value:'KY', text:'Kentucky'}, {value:'LA', text:'Louisiana'}, {value:'ME', text:'Maine'}, {value:'MD', text:'Maryland'}, {value:'MA', text:'Massachusetts'}, {value:'MI', text:'Michigan'}, {value:'MN', text:'Minnesota'}, {value:'MS', text:'Mississippi'}, {value:'MO', text:'Missouri'}, {value:'MT', text:'Montana'}, {value:'NE', text:'Nebraska'}, {value:'NV', text:'Nevada'}, {value:'NH', text:'New Hampshire'}, {value:'NJ', text:'New Jersey'}, {value:'NM', text:'New Mexico'}, {value:'NY', text:'New York'}, {value:'NC', text:'North Carolina'}, {value:'ND', text:'North Dakota'}, {value:'OH', text:'Ohio'}, {value:'OK', text:'Oklahoma'}, {value:'OR', text:'Oregon'}, {value:'PA', text:'Pennsylvania'}, {value:'RI', text:'Rhode Island'}, {value:'SC', text:'South Carolina'}, {value:'SD', text:'South Dakota'}, {value:'TN', text:'Tennessee'}, {value:'TX', text:'Texas'}, {value:'UT', text:'Utah'}, {value:'VT', text:'Vermont'}, {value:'VA', text:'Virginia'}, {value:'WA', text:'Washington'}, {value:'WV', text:'West Virginia'}, {value:'WI', text:'Wisconsin'}, {value:'WY', text:'Wyoming'}, {value:'AB', text:'Alberta'}, {value:'BC', text:'British Columbia'}, {value:'NB', text:'New Brunswick'}, {value:'NL', text:'Newfoundland and Labrador'}, {value:'NS', text:'Nova Scotia'}, {value:'NT', text:'Northwest Territories'}, {value:'NU', text:'Nunavut'}, {value:'ON', text:'Ontario'}, {value:'PE', text:'Prince Edward Island'}, {value:'QC', text:'Quebec'}, {value:'SK', text:'Saskatchewan'}, {value:'YT', text:'Yukon'}]
       select#state(name='state' required)
@@ -25,46 +26,15 @@ mixin meetingForm()
             option(value=(option.value) selected) #{option.text}
           else
             option(value=(option.value)) #{option.text}
+      
       label(for='yearlymeeting') Yearly Meeting (Select 1 or More)
+      - const yearlymeetingOptions = [{value: 'Unaffiliated'}, {value: 'Alaska Friends Conference'}, {value: 'Alaska YM'}, {value: 'Baltimore YM'}, {value: 'Canadian YM'}, {value: 'Central YM'}, {value: 'EFC - Eastern Region'}, {value: 'EFC - Mid-America YM'}, {value: 'EFC - Southwest'}, {value: 'Friends of Jesus Fellowship'}, {value: 'Great Plains YM'}, {value: 'Illinois YM'}, {value: 'Indiana YM'}, {value: 'Intermountain YM'}, {value: 'Iowa (C)'}, {value: 'Iowa (FUM)'}, {value: 'JA de M�xico'}, {value: 'Lake Erie YM'}, {value: 'Missouri Valley FC'}, {value: 'New Association'}, {value: 'New England YM'}, {value: 'New York YM'}, {value: 'North Carolina (C)'}, {value: 'North Carolina (FUM)'}, {value: 'North Pacific YM'}, {value: 'Northern YM'}, {value: 'Northwest YM'}, {value: 'Ohio Valley YM'}, {value: 'Ohio YM'}, {value: 'Pacific YM'}, {value: 'Philadelphia YM'}, {value: 'Piedmont Friends Fellowship/YM'}, {value: 'Rocky Mountain YM'}, {value: 'South Central YM'}, {value: 'Southeastern YM'}, {value: 'Southern Appalachian YMA'}, {value: 'Western Assn'}, {value: 'Western YM'}, {value: 'Wilmington YM'}]
       select#yearlymeeting(name='yearlymeeting' size='3' multiple required)
-        option(value='Unaffiliated') Unaffiliated
-        option(value='Alaska Friends Conference') Alaska Friends Conference
-        option(value='Alaska YM') Alaska YM
-        option(value='Baltimore YM') Baltimore YM
-        option(value='Canadian YM') Canadian YM
-        option(value='Central YM') Central YM
-        option(value='EFC - Eastern Region') EFC - Eastern Region
-        option(value='EFC - Mid-America YM') EFC - Mid-America YM
-        option(value='EFC - Southwest') EFC - Southwest
-        option(value='Friends Of Jesus Fellowship') Friends Of Jesus Fellowship
-        option(value='Great Plains YM') Great Plains YM
-        option(value='Illinois YM') Illinois YM
-        option(value='Indiana YM') Indiana YM
-        option(value='Intermountain YM') Intermountain YM
-        option(value='Iowa (C)') Iowa (C)
-        option(value='Iowa (FUM)') Iowa (FUM)
-        option(value='JA de M�xico') JA de México
-        option(value='Lake Erie YM') Lake Erie YM
-        option(value='Missouri Valley FC') Missouri Valley FC
-        option(value='New Association') New Association
-        option(value='New England YM') New England YM
-        option(value='New York YM') New York YM
-        option(value='North Carolina (C)') North Carolina (C)
-        option(value='North Carolina (FUM)') North Carolina (FUM)
-        option(value='North Pacific YM') North Pacific YM
-        option(value='Northern YM') Northern YM
-        option(value='Ohio Valley YM') Ohio Valley YM
-        option(value='Ohio YM') Ohio YM
-        option(value='Pacific YM') Pacific YM
-        option(value='Philadelphia YM') Philadelphia YM
-        option(value='Piedmont Friends Fellowship/YM') Piedmont Friends Fellowship/YM
-        option(value='Rocky Mountain YM') Rocky Mountain YM
-        option(value='South Central YM') South Central YM
-        option(value='Southeastern YM') Southeastern YM
-        option(value='Southern Appalachian YMA') Southern Appalachian YMA
-        option(value='Western Assn') Western Assn
-        option(value='Western YM') Western YM
-        option(value='Wilmington YM') Wilmington YM
+        each yearlymeeting in yearlymeetingOptions
+          if (meeting.yearlymeeting.includes(yearlymeeting.value))
+            option(value=(yearlymeeting.value) selected) #{yearlymeeting.value}
+          else 
+            option(value=(yearlymeeting.value)) #{yearlymeeting.value}
       label(for='branch') Branch (Select 1 or More)
       select#branch(name='branch' size='3' multiple required)
         option(value='Unaffiliated') Unaffiliated
