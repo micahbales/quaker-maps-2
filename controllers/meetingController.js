@@ -41,7 +41,10 @@ exports.editMeeting = async (req, res) => {
 
 exports.updateMeeting = async (req, res) => {
   const _id = req.params.id
-  const meeting = await Meeting.findOne({ _id });
+  const meeting = await Meeting.findOneAndUpdate({ _id }, req.body, {
+    new: true // return new meeting values rather than the old ones
+    // TODO: run validators to sanitize inputs
+  });
   res.render('meeting', { title: meeting.name, meeting });
 };
 
