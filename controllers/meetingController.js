@@ -45,7 +45,10 @@ exports.updateMeeting = async (req, res) => {
     new: true // return new meeting values rather than the old ones
     // TODO: run validators to sanitize inputs
   });
-  res.render('meeting', { title: meeting.name, meeting });
+  req.flash('success', 'meeting successfully updated!');
+  // with res.render (as opposed to res.redirect),
+  // we must also include 'flashes: req.flash()' in our locals object
+  res.render('meeting', { title: meeting.name, meeting, flashes: req.flash() });
 };
 
 exports.deleteMeeting = async (req, res) => {
