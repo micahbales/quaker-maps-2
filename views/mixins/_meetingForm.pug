@@ -1,7 +1,7 @@
 mixin meetingForm()
   .meetingForm
     h2.meetingForm__title= title 
-    form.meetingForm__body(method='POST' action=`/meetings/${meeting.id + '/' || ''}add`)
+    form.meetingForm__body(method='POST' action=`/meetings/${meeting.id ? meeting.id + '/' : ''}add`)
       label(for='name') Name
       input#name(type='text' placeholder='Name of Meeting' name='name' value=(meeting.name) autofocus required)
       
