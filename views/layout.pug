@@ -41,6 +41,8 @@ html
         p Quaker Maps &copy; #{h.moment().format('YYYY')} Micah Bales
         
     block scripts
+      //- google maps api
+      script(async defer src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_KEY}`) 
       //- bundled scripts from webpack
       script(src="/dist/App.bundle.js")
       //- font awesome via CDN

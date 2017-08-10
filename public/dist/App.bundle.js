@@ -63,8 +63,9 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74,12 +75,21 @@ __webpack_require__(1);
 
 var _bling = __webpack_require__(2);
 
+var _map = __webpack_require__(32);
+
+var _map2 = _interopRequireDefault(_map);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* init map */
+
+
+/* import javascript modules here */
+(0, _map2.default)();
+
 /* flash messages disappear after being displayed */
 /* import sass into webpack pipeline */
 window.setTimeout(fadeFlashes, 6000);
-
-/* import javascript modules here */
-
 function fadeFlashes() {
   (0, _bling.$$)('.flash').forEach(function (element) {
     element.setAttribute('style', 'display: none;');
@@ -87,13 +97,15 @@ function fadeFlashes() {
 };
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 2 */
+
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -122,6 +134,32 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 exports.$ = $;
 exports.$$ = $$;
 
+/***/ }),
+
+/***/ 32:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+function initMap() {
+  var uluru = { lat: -25.363, lng: 131.044 };
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
+}
+
+exports.default = initMap;
+
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=App.bundle.js.map
