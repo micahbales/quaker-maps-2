@@ -63,9 +63,8 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75,7 +74,7 @@ __webpack_require__(1);
 
 var _bling = __webpack_require__(2);
 
-var _map = __webpack_require__(32);
+var _map = __webpack_require__(3);
 
 var _map2 = _interopRequireDefault(_map);
 
@@ -85,7 +84,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 /* import javascript modules here */
-(0, _map2.default)((0, _bling.$)('#map'));
+window.on('load', function () {
+  (0, _map2.default)((0, _bling.$)('#map'));
+});
 
 /* flash messages disappear after being displayed */
 /* import sass into webpack pipeline */
@@ -97,15 +98,13 @@ function fadeFlashes() {
 };
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 2:
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -135,8 +134,7 @@ exports.$ = $;
 exports.$$ = $$;
 
 /***/ }),
-
-/***/ 32:
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -146,13 +144,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function initMap(mapDiv) {
-  var uluru = { lat: -25.363, lng: 131.044 };
   var map = new google.maps.Map(mapDiv, {
     zoom: 4,
-    center: uluru
+    center: { lat: 39.8283, lng: -98.5795 }
   });
   var marker = new google.maps.Marker({
-    position: uluru,
+    position: { lat: 39.8283, lng: -98.5795 },
     map: map
   });
 }
@@ -160,6 +157,5 @@ function initMap(mapDiv) {
 exports.default = initMap;
 
 /***/ })
-
-/******/ });
+/******/ ]);
 //# sourceMappingURL=App.bundle.js.map

@@ -6,7 +6,10 @@ import { $, $$ } from './modules/bling';
 import initMap from './modules/map';
 
 /* init map */
-initMap($('#map'));
+window.on('load', () => {
+  initMap($('#map'));
+});
+
 
 /* flash messages disappear after being displayed */
 window.setTimeout(fadeFlashes, 6000);
