@@ -85,7 +85,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 
 /* import javascript modules here */
-(0, _map2.default)();
+(0, _map2.default)((0, _bling.$)('#map'));
 
 /* flash messages disappear after being displayed */
 /* import sass into webpack pipeline */
@@ -145,9 +145,9 @@ exports.$$ = $$;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-function initMap() {
+function initMap(mapDiv) {
   var uluru = { lat: -25.363, lng: 131.044 };
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map(mapDiv, {
     zoom: 4,
     center: uluru
   });
