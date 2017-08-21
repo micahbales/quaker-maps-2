@@ -3,11 +3,11 @@ import '../sass/style.scss';
 
 /* import javascript modules here */
 import { $, $$ } from './modules/bling';
-import initMap from './modules/map';
+import makeMap from './modules/map';
 
 /* init map */
 window.on('load', () => {
-  initMap($('#map'));
+  makeMap($('#map'));
 });
 
 
