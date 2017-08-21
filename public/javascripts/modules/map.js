@@ -12,12 +12,35 @@ function loadPlaces(map) {
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;
+    // create bounds for map view
+    const bounds = new google.maps.LatLngBounds();
+    // create infoWindow to be dynamically populated onclick
+    let infoWindow = new google.maps.InfoWindow;
+
+
     meetings.forEach(meeting => {
-      var marker = new google.maps.Marker({
-        position: { lat: meeting.location.coordinates[1], lng: meeting.location.coordinates[0] }, // {lat: 39.8283, lng: -98.5795}
+      let meetingLocation = {
+        lat: meeting.location.coordinates[1],
+        lng: meeting.location.coordinates[0]
+      }
+
+      const marker = new google.maps.Marker({
+        position: meetingLocation,
         map: map
       });
-    })
+
+      let contentString = `<h1><a href="/meetings/${meeting.slug}">${meeting.name}</a></h1>
+                      <p>${meeting.description}</p>`;
+
+      marker.addListener('click', () => {
+        infoWindow.setContent(contentString);
+        infoWindow.open(map, marker);
+      })
+
+      bounds.extend(meetingLocation);
+    });
+
+    map.fitBounds(bounds)
   });
 };
 
@@ -25,7 +48,7 @@ function loadPlaces(map) {
 
 function makeMap(mapDiv) {
   if (!mapDiv) return;
-  var map = new google.maps.Map(mapDiv, mapOptions);
+  const map = new google.maps.Map(mapDiv, mapOptions);
   loadPlaces(map);
 }
 

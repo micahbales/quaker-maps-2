@@ -162,12 +162,33 @@ function loadPlaces(map) {
   _axios2.default.get('/api/v1/meetings').then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
+    // create bounds for map view
+    var bounds = new google.maps.LatLngBounds();
+    // create infoWindow to be dynamically populated onclick
+    var infoWindow = new google.maps.InfoWindow();
+
     meetings.forEach(function (meeting) {
+      var meetingLocation = {
+        lat: meeting.location.coordinates[1],
+        lng: meeting.location.coordinates[0]
+      };
+
       var marker = new google.maps.Marker({
-        position: { lat: meeting.location.coordinates[1], lng: meeting.location.coordinates[0] }, // {lat: 39.8283, lng: -98.5795}
+        position: meetingLocation,
         map: map
       });
+
+      var contentString = '<h1><a href="/meetings/' + meeting.slug + '">' + meeting.name + '</a></h1>\n                      <p>' + meeting.description + '</p>';
+
+      marker.addListener('click', function () {
+        infoWindow.setContent(contentString);
+        infoWindow.open(map, marker);
+      });
+
+      bounds.extend(meetingLocation);
     });
+
+    map.fitBounds(bounds);
   });
 };
 
