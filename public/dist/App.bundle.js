@@ -159,9 +159,15 @@ var mapOptions = {
 };
 
 function loadPlaces(map) {
-  var marker = new google.maps.Marker({
-    position: { lat: 39.8283, lng: -98.5795 },
-    map: map
+  _axios2.default.get('/api/v1/meetings').then(function (res) {
+    // load array of meeting data from all records in DB
+    var meetings = res.data;
+    meetings.forEach(function (meeting) {
+      var marker = new google.maps.Marker({
+        position: { lat: meeting.location.coordinates[1], lng: meeting.location.coordinates[0] }, // {lat: 39.8283, lng: -98.5795}
+        map: map
+      });
+    });
   });
 };
 

@@ -61,8 +61,10 @@ exports.deleteMeeting = async (req, res) => {
 /** API **/
 
 exports.mapMeetings = async (req, res) => {
-  console.log('hit')
-  const meetings = await Meeting.find({});
-  console.log(meetings)
+  const meetings = await Meeting.find({},
+    {
+      created: false,
+      __v: false
+    });
   res.json(meetings);
 }
