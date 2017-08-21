@@ -57,3 +57,12 @@ exports.deleteMeeting = async (req, res) => {
   req.flash('success', 'meeting successfully deleted!');
   res.redirect(`/meetings`);
 };
+
+/** API **/
+
+exports.mapMeetings = async (req, res) => {
+  console.log('hit')
+  const meetings = await Meeting.find({});
+  console.log(meetings)
+  res.json(meetings);
+}

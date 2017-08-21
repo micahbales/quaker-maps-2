@@ -23,4 +23,8 @@ router.post('/meetings/:id/add', catchErrors(meetingController.updateMeeting));
 /* meeting delete */
 router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting));
 
+/** API **/
+
+router.get('/api/v1/meetings', catchErrors(meetingController.mapMeetings));
+
 module.exports = router;
