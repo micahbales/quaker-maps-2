@@ -44,8 +44,6 @@ function loadPlaces(map) {
   });
 };
 
-
-
 function makeMap(mapDiv) {
   if (!mapDiv) return;
   const map = new google.maps.Map(mapDiv, mapOptions);

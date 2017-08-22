@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Meeting = mongoose.model('Meeting');
 
 exports.map = (req, res) => {
-  res.render('map', { title: 'Map' });
+  res.render('map', { title: 'Quaker Meetings in North America' });
 };
 
 exports.getMeetings = async (req, res) => {

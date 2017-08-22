@@ -191,9 +191,19 @@
   .meeting {
     width: 40%; } }
 
-#map {
-  height: 400px;
-  width: 100%; }
+.map-title {
+  text-align: center; }
+
+.map {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .map #map {
+    height: 500px;
+    width: 60%; }
 
 body {
   font-family: 'Open Sans', serif; }

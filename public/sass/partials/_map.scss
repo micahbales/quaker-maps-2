@@ -1,4 +1,13 @@
-#map {
-  height: 400px;
-  width: 100%;
+.map-title {
+  text-align: center;
+}
+
+.map {
+  display: flex;
+  justify-content: center;
+
+  #map {
+    height: 500px;
+    width: 60%;
+  }
 }
