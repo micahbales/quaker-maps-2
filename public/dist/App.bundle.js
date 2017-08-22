@@ -153,15 +153,19 @@ var _bling = __webpack_require__(2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapOptions = {
-  zoom: 4,
-  center: { lat: 39.8283, lng: -98.5795 },
-  maxZoom: 16
+  // zoom: 10,
+  // center: {lat: 39.8283, lng: -98.5795},
+  // maxZoom: 16
 };
 
 function loadPlaces(map) {
   _axios2.default.get('/api/v1/meetings').then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
+    if (!meetings.length) {
+      alert('no meetings found!');
+      return;
+    }
     // create bounds for map view
     var bounds = new google.maps.LatLngBounds();
     // create infoWindow to be dynamically populated onclick
@@ -178,7 +182,7 @@ function loadPlaces(map) {
         map: map
       });
 
-      var contentString = '<h1><a href="/meetings/' + meeting.slug + '">' + meeting.name + '</a></h1>\n                      <p>' + meeting.description + '</p>';
+      var contentString = '<h1><a href="/meetings/' + meeting.slug + '">' + meeting.name + '</a></h1>\n                      <p>' + meeting.description + '</p>\n                      <p><strong>Address:</strong> ' + meeting.location.address + ', ' + meeting.city + ', ' + meeting.state + ', ' + meeting.zip + '</p>\n                      <p><strong>Yearly Meeting:</strong> ' + meeting.yearlymeeting + '</p>\n                      <p><strong>Branch:</strong> ' + meeting.branch + '</p>\n                      <p><strong>Worship Style:</strong> ' + meeting.worshipstyle + '</p>';
 
       marker.addListener('click', function () {
         infoWindow.setContent(contentString);

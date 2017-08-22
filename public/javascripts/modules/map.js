@@ -2,9 +2,9 @@ import axios from 'axios';
 import { $ } from './bling';
 
 const mapOptions = {
-  zoom: 4,
-  center: {lat: 39.8283, lng: -98.5795},
-  maxZoom: 16
+  // zoom: 10,
+  // center: {lat: 39.8283, lng: -98.5795},
+  // maxZoom: 16
 }
 
 function loadPlaces(map) {
@@ -12,11 +12,14 @@ function loadPlaces(map) {
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;
+    if (!meetings.length) {
+      alert('no meetings found!');
+      return;
+    }
     // create bounds for map view
     const bounds = new google.maps.LatLngBounds();
     // create infoWindow to be dynamically populated onclick
     let infoWindow = new google.maps.InfoWindow;
-
 
     meetings.forEach(meeting => {
       let meetingLocation = {
@@ -30,7 +33,11 @@ function loadPlaces(map) {
       });
 
       let contentString = `<h1><a href="/meetings/${meeting.slug}">${meeting.name}</a></h1>
-                      <p>${meeting.description}</p>`;
+                      <p>${meeting.description}</p>
+                      <p><strong>Address:</strong> ${meeting.location.address}, ${meeting.city}, ${meeting.state}, ${meeting.zip}</p>
+                      <p><strong>Yearly Meeting:</strong> ${meeting.yearlymeeting}</p>
+                      <p><strong>Branch:</strong> ${meeting.branch}</p>
+                      <p><strong>Worship Style:</strong> ${meeting.worshipstyle}</p>`;
 
       marker.addListener('click', () => {
         infoWindow.setContent(contentString);
