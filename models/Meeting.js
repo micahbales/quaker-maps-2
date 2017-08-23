@@ -28,9 +28,12 @@ const meetingSchema = new Schema({
       required: 'Your meeting must have an address'
     }
   },
+  email: String,
+  website: String,
   yearlymeeting: [String],
   branch: [String],
   worshipstyle: [String],
+  accessibility: [String],
   created: {
     type: Date,
     default: Date.now

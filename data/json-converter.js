@@ -28,10 +28,13 @@ sourceJSON.forEach((meeting) => {
         ],
         "address": meeting.address || meeting.location
       },
-      // last 3 attributes are arrays with multiple options
+      "email": meeting.email,
+      "website": meeting.website,
+      // the 4 last attributes are arrays with multiple options
       "yearlymeeting": meeting.yearlymeeting ? meeting.yearlymeeting.split(', ') : ["Unaffiliated"],
       "branch": meeting.branch ? meeting.branch.split(', ') : ["Unaffiliated"],
-      "worshipstyle": meeting.worshipstyle ? meeting.worshipstyle.split(', ') : ["Unaffiliated"]
+      "worshipstyle": meeting.worshipstyle ? meeting.worshipstyle.split(', ') : ["Unaffiliated"],
+      "accessibility": meeting.accessibility ? meeting.accessibility.split(', ') : undefined
     };
     newJSON.push(JSON.stringify(newMeetingEntry));
 });
