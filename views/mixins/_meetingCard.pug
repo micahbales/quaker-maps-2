@@ -3,11 +3,13 @@ mixin meetingCard(meeting)
     h2.meeting__title 
       a(href=`/meetings/${meeting.slug}`) #{meeting.name}
     .meeting__body
-      p.meeting__description #{meeting.description}
       .meeting__details
+        p.meeting__description #{meeting.description}
         p #[strong Address:] #{meeting.location.address}, #{meeting.city}, #{meeting.state} #{meeting.zip}
         p #[strong Geolocation:] { Lat: #{meeting.location.coordinates[1]}, Lng: #{meeting.location.coordinates[0]} }
         p #[strong Worship Style:] #{meeting.worshipstyle}
         p #[strong Yearly Meeting:] #{meeting.yearlymeeting}
         p #[strong Branch:] #{meeting.branch}
         p #[strong Slug:] #{meeting.slug}
+      .meeting-map
+        #map
