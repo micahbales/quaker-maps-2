@@ -7,9 +7,12 @@ mixin meetingCard(meeting)
         p.meeting__description #{meeting.description}
         p #[strong Address:] #{meeting.location.address}, #{meeting.city}, #{meeting.state} #{meeting.zip}
         p #[strong Geolocation:] { Lat: #{meeting.location.coordinates[1]}, Lng: #{meeting.location.coordinates[0]} }
+        p #[strong Email:] #{meeting.email}
+        p #[strong Website:] #{meeting.website}
         p #[strong Worship Style:] #{meeting.worshipstyle}
         p #[strong Yearly Meeting:] #{meeting.yearlymeeting}
         p #[strong Branch:] #{meeting.branch}
+        p #[strong Accessibility:] #{meeting.accessibility}
         p #[strong Slug:] #{meeting.slug}
       .meeting-map
         #map

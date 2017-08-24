@@ -28,6 +28,12 @@ mixin meetingForm()
             option(value=(option.value) selected) #{option.text}
           else
             option(value=(option.value)) #{option.text}
+            
+      label(for='email') Email
+      input#email(type='text' placeholder='Contact Email' name='email' value=(meeting.email))
+        
+      label(for='website') Website
+      input#website(type='text' placeholder='Meeting Website' name='website' value=(meeting.website))
       
       label(for='yearlymeeting') Yearly Meeting (Select 1 or More)
       - const yearlymeetingOptions = [{value: 'Unaffiliated'}, {value: 'Alaska Friends Conference'}, {value: 'Alaska YM'}, {value: 'Baltimore YM'}, {value: 'Canadian YM'}, {value: 'Central YM'}, {value: 'EFC - Eastern Region'}, {value: 'EFC - Mid-America YM'}, {value: 'EFC - Southwest'}, {value: 'Friends Of Jesus Fellowship'}, {value: 'Great Plains YM'}, {value: 'Illinois YM'}, {value: 'Indiana YM'}, {value: 'Intermountain YM'}, {value: 'Iowa (C)'}, {value: 'Iowa (FUM)'}, {value: 'JA de M�xico'}, {value: 'Lake Erie YM'}, {value: 'Missouri Valley FC'}, {value: 'New Association'}, {value: 'New England YM'}, {value: 'New York YM'}, {value: 'North Carolina (C)'}, {value: 'North Carolina (FUM)'}, {value: 'North Pacific YM'}, {value: 'Northern YM'}, {value: 'Northwest YM'}, {value: 'Ohio Valley YM'}, {value: 'Ohio YM'}, {value: 'Pacific YM'}, {value: 'Philadelphia YM'}, {value: 'Piedmont Friends Fellowship/YM'}, {value: 'Rocky Mountain YM'}, {value: 'South Central YM'}, {value: 'Southeastern YM'}, {value: 'Southern Appalachian YMA'}, {value: 'Western Assn'}, {value: 'Western YM'}, {value: 'Wilmington YM'}]
@@ -55,5 +61,14 @@ mixin meetingForm()
             option(value=(worshipstyle.value) selected) #{worshipstyle.value}
           else
             option(value=(worshipstyle.value)) #{worshipstyle.value}
+            
+      label(for='accessibility') Accessibility (Select 1 or More)
+      - const accessibilityOptions = [{value: 'Wheelchair Accessible'}, {value: 'American Sign Language'}, {value: 'Hearing Assistance System'}, {value: 'Some areas Accessible'}]
+      select#accessibility(name='accessibility' size='3' multiple required)
+        each accessibility in accessibilityOptions
+          if (meeting.accessibility && meeting.accessibility.includes(accessibility.value))
+            option(value=(accessibility.value) selected) #{accessibility.value}
+          else
+            option(value=(accessibility.value)) #{accessibility.value}
             
       input.button(type='submit' value='Submit')
