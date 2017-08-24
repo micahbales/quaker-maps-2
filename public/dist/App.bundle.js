@@ -1068,13 +1068,20 @@ function loadPlaces(map, slug) {
 function makeMap(mapDiv) {
   if (!mapDiv) return;
   var map = new google.maps.Map(mapDiv, mapOptions);
+
   /* if we're looking at a particular meeting, get its slug
      so that we can display just that one meeting
      otherwise, it will be null */
   var pathname = window.location.pathname;
   var slug = pathname.slice(10);
-  console.log(slug);
   loadPlaces(map, slug);
+
+  /* check and make sure the zoom level isn't too tight
+     if it is, make it wider */
+  var listener = google.maps.event.addListener(map, "idle", function () {
+    if (map.getZoom() > 14) map.setZoom(14);
+    google.maps.event.removeListener(listener);
+  });
 }
 
 exports.default = makeMap;
