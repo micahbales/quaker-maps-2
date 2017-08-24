@@ -3,7 +3,7 @@ extends layout
 include mixins/_meetingCard
 
 block content    
-  +meetingCard(meeting)
+  +meetingCard(meeting, true)
   .edit-meeting
     a(href=`/meetings/${meeting.id}/edit` class='button button--edit')
       p Edit Meeting

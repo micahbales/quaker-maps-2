@@ -1,4 +1,4 @@
-mixin meetingCard(meeting)
+mixin meetingCard(meeting, map)
   .meeting
     h2.meeting__title 
       a(href=`/meetings/${meeting.slug}`) #{meeting.name}
@@ -14,5 +14,6 @@ mixin meetingCard(meeting)
         p #[strong Branch:] #{meeting.branch}
         p #[strong Accessibility:] #{meeting.accessibility}
         p #[strong Slug:] #{meeting.slug}
-      .meeting-map
-        #map
+      if map
+        .meeting-map
+          #map
