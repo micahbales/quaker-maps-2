@@ -1027,8 +1027,8 @@ var mapOptions = {
   // maxZoom: 16
 };
 
-function loadPlaces(map) {
-  _axios2.default.get('/api/v1/meetings').then(function (res) {
+function loadPlaces(map, slug) {
+  _axios2.default.get('/api/v1/meetings/' + (slug ? slug : '')).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
@@ -1068,7 +1068,13 @@ function loadPlaces(map) {
 function makeMap(mapDiv) {
   if (!mapDiv) return;
   var map = new google.maps.Map(mapDiv, mapOptions);
-  loadPlaces(map);
+  /* if we're looking at a particular meeting, get its slug
+     so that we can display just that one meeting
+     otherwise, it will be null */
+  var pathname = window.location.pathname;
+  var slug = pathname.slice(10);
+  console.log(slug);
+  loadPlaces(map, slug);
 }
 
 exports.default = makeMap;

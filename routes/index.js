@@ -25,6 +25,9 @@ router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting)
 
 /** API **/
 
-router.get('/api/v1/meetings', catchErrors(meetingController.mapMeetings));
+/* return all meeting records */
+router.get('/api/v1/meetings', catchErrors(meetingController.mapAllMeetings));
+/* return a single meeting record */
+router.get('/api/v1/meetings/:slug', catchErrors(meetingController.mapOneMeeting));
 
 module.exports = router;
