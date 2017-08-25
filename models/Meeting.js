@@ -42,8 +42,7 @@ const meetingSchema = new Schema({
 });
 
 meetingSchema.pre('save', function(next) {
-  const yearlymeetingSlug = this.yearlymeeting[0].toLowerCase().replace(/[^a-z0-9]/g, '');
-  console.log(yearlymeetingSlug);
+  const yearlymeetingSlug = this.yearlymeeting[0].toLowerCase().replace(/[^A-z0-9]/g, '');
   this.icon = `${yearlymeetingSlug}.png`
   next();
 });

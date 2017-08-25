@@ -41,11 +41,17 @@ exports.editMeeting = async (req, res) => {
 
 exports.updateMeeting = async (req, res) => {
   const _id = req.params.id
-  const meeting = await Meeting.findOneAndUpdate({ _id }, req.body, {
+  let meeting = await Meeting.findOneAndUpdate({ _id }, req.body, {
     new: true, // return new meeting values rather than the old ones
     runValidators: true
     // TODO: sanitize inputs
   });
+
+  // ensure that the icon attribute accords with the first string in meeting.yearlymeeting
+  const yearlymeetingSlug = meeting.yearlymeeting[0].toLowerCase().replace(/[^A-z0-9]/g, '');
+  meeting.icon = `${yearlymeetingSlug}.png`;
+  meeting.save();
+
   req.flash('success', 'meeting successfully updated!');
   res.redirect(`/meetings/${meeting.slug}`);
 };
