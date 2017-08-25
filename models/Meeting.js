@@ -37,7 +37,8 @@ const meetingSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  }
+  },
+  icon: String
 });
 
 meetingSchema.pre('save', async function(next) {
@@ -52,6 +53,13 @@ meetingSchema.pre('save', async function(next) {
   if (meetingsWithSlug.length) {
     this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
   }
+  next();
+});
+
+meetingSchema.pre('save', function(next) {
+  // set icon according to yearly meeting
+  console.log(`icon: ${this.icon}`);
+  this.icon = 'blah!';
   next();
 });
 
