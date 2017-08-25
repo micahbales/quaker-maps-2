@@ -41,6 +41,13 @@ const meetingSchema = new Schema({
   icon: String
 });
 
+meetingSchema.pre('save', function(next) {
+  const yearlymeetingSlug = this.yearlymeeting[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+  console.log(yearlymeetingSlug);
+  this.icon = `${yearlymeetingSlug}.png`
+  next();
+});
+
 meetingSchema.pre('save', async function(next) {
   if (!this.isModified('name')) {
     next(); // skip it
@@ -53,13 +60,6 @@ meetingSchema.pre('save', async function(next) {
   if (meetingsWithSlug.length) {
     this.slug = `${this.slug}-${storesWithSlug.length + 1}`;
   }
-  next();
-});
-
-meetingSchema.pre('save', function(next) {
-  // set icon according to yearly meeting
-  console.log(`icon: ${this.icon}`);
-  this.icon = 'blah!';
   next();
 });
 

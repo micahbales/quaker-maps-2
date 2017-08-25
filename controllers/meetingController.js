@@ -42,8 +42,9 @@ exports.editMeeting = async (req, res) => {
 exports.updateMeeting = async (req, res) => {
   const _id = req.params.id
   const meeting = await Meeting.findOneAndUpdate({ _id }, req.body, {
-    new: true // return new meeting values rather than the old ones
-    // TODO: run validators to sanitize inputs
+    new: true, // return new meeting values rather than the old ones
+    runValidators: true
+    // TODO: sanitize inputs
   });
   req.flash('success', 'meeting successfully updated!');
   res.redirect(`/meetings/${meeting.slug}`);
