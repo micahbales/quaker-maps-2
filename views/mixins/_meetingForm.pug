@@ -62,9 +62,9 @@ mixin meetingForm()
           else
             option(value=(worshipstyle.value)) #{worshipstyle.value}
             
-      label(for='accessibility') Accessibility (Select 1 or More)
+      label(for='accessibility') Accessibility (Select 0 or More)
       - const accessibilityOptions = [{value: 'Wheelchair Accessible'}, {value: 'American Sign Language'}, {value: 'Hearing Assistance System'}, {value: 'Some areas Accessible'}]
-      select#accessibility(name='accessibility' size='3' multiple required)
+      select#accessibility(name='accessibility' size='3' multiple)
         each accessibility in accessibilityOptions
           if (meeting.accessibility && meeting.accessibility.includes(accessibility.value))
             option(value=(accessibility.value) selected) #{accessibility.value}
