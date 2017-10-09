@@ -1,10 +1,21 @@
 import axios from 'axios';
-import { $ } from './bling';
 
 const mapOptions = {
   // zoom: 10,
   // center: {lat: 39.8283, lng: -98.5795},
   // maxZoom: 16
+}
+
+function getUserCoordinates() {
+
+  return new Promise((resolve, reject) => {
+
+    navigator.geolocation.getCurrentPosition(position => {
+      let coords = position.coords;
+      resolve({ lat: coords.latitude, lng: coords.longitude });
+    }, error => reject(error));
+
+  });
 }
 
 function loadPlaces(map, slug) {
@@ -53,8 +64,13 @@ function loadPlaces(map, slug) {
 
 function makeMap(mapDiv) {
   if (!mapDiv) return;
+
+  getUserCoordinates()
+  .then(results => { console.log(results) },
+  reason => { console.log(reason) });
+
   const map = new google.maps.Map(mapDiv, mapOptions);
-  
+
   /* if we're looking at a particular meeting, get its slug
      so that we can display just that one meeting
      otherwise, it will be null */
