@@ -10,10 +10,10 @@ function getUserCoordinates() {
 
   return new Promise((resolve, reject) => {
 
-    navigator.geolocation.getCurrentPosition(position => {
-      let coords = position.coords;
-      resolve({ lat: coords.latitude, lng: coords.longitude });
-    }, error => reject(error));
+    navigator.geolocation.getCurrentPosition(
+      ({"coords": {"latitude": lat, "longitude": lng} }) => {
+        resolve({ lat, lng });
+      }, error => reject(error));
 
   });
 }

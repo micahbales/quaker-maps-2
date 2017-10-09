@@ -160,9 +160,12 @@ function getUserCoordinates() {
 
   return new Promise(function (resolve, reject) {
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var coords = position.coords;
-      resolve({ lat: coords.latitude, lng: coords.longitude });
+    navigator.geolocation.getCurrentPosition(function (_ref) {
+      var _ref$coords = _ref["coords"],
+          lat = _ref$coords["latitude"],
+          lng = _ref$coords["longitude"];
+
+      resolve({ lat: lat, lng: lng });
     }, function (error) {
       return reject(error);
     });
@@ -170,7 +173,7 @@ function getUserCoordinates() {
 }
 
 function loadPlaces(map, slug) {
-  _axios2.default.get('/api/v1/meetings/' + (slug ? slug : '')).then(function (res) {
+  _axios2.default.get("/api/v1/meetings/" + (slug ? slug : '')).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
@@ -193,7 +196,7 @@ function loadPlaces(map, slug) {
         map: map
       });
 
-      var contentString = '<h1><a href="/meetings/' + meeting.slug + '">' + meeting.name + '</a></h1>\n                      <p>' + meeting.description + '</p>\n                      <p><strong>Address:</strong> ' + meeting.location.address + ', ' + meeting.city + ', ' + meeting.state + ', ' + meeting.zip + '</p>\n                      <p><strong>Yearly Meeting:</strong> ' + meeting.yearlymeeting + '</p>\n                      <p><strong>Branch:</strong> ' + meeting.branch + '</p>\n                      <p><strong>Worship Style:</strong> ' + meeting.worshipstyle + '</p>';
+      var contentString = "<h1><a href=\"/meetings/" + meeting.slug + "\">" + meeting.name + "</a></h1>\n                      <p>" + meeting.description + "</p>\n                      <p><strong>Address:</strong> " + meeting.location.address + ", " + meeting.city + ", " + meeting.state + ", " + meeting.zip + "</p>\n                      <p><strong>Yearly Meeting:</strong> " + meeting.yearlymeeting + "</p>\n                      <p><strong>Branch:</strong> " + meeting.branch + "</p>\n                      <p><strong>Worship Style:</strong> " + meeting.worshipstyle + "</p>";
 
       marker.addListener('click', function () {
         infoWindow.setContent(contentString);
