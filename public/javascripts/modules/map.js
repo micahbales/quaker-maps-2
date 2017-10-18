@@ -65,10 +65,6 @@ function loadPlaces(map, slug) {
 function makeMap(mapDiv) {
   if (!mapDiv) return;
 
-  getUserCoordinates()
-  .then(results => { console.log(results) },
-  reason => { console.log(reason) });
-
   const map = new google.maps.Map(mapDiv, mapOptions);
 
   /* if we're looking at a particular meeting, get its slug
@@ -84,6 +80,21 @@ function makeMap(mapDiv) {
     if (map.getZoom() > 14) map.setZoom(14);
     google.maps.event.removeListener(listener);
   });
+
+  getUserCoordinates()
+  .then(coords => {
+    try {                                    // return every character until "."
+      let lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
+          lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
+      console.log(lat, lng);
+      map.panTo(new google.maps.LatLng(lat, lng));
+      // .setCenter()
+    } catch (err) {
+      console.error(err);
+    }
+
+  },
+  reason => { console.log(reason) });
 }
 
 export default makeMap;
