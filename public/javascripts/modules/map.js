@@ -69,8 +69,9 @@ function loadPlaces(map, slug) {
             let lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
                 lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
 
+            // set user location as new center of the map
             map.panTo(new google.maps.LatLng(lat, lng));
-                // .setCenter() has the same effect, but without animation
+
           } catch (err) {
             console.error(err);
           }
