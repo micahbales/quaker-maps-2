@@ -1088,6 +1088,13 @@ function loadPlaces(map, slug) {
 
           // set user location as new center of the map
           map.panTo(new google.maps.LatLng(lat, lng));
+
+          /*
+             set zoom at a regional level
+             (this could probably be done
+             in a more dynamic, contextual way)
+          */
+          map.setZoom(9);
         } catch (err) {
           console.error(err);
         }
