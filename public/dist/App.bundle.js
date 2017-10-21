@@ -1076,6 +1076,25 @@ function loadPlaces(map, slug) {
     });
 
     map.fitBounds(bounds);
+
+    /* If this is not a single-state map, we will center
+       the map on the user's geolocation, if provided */
+    if (!slug) {
+      getUserCoordinates().then(function (coords) {
+        try {
+          // return every character until "."
+          var lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
+              lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
+
+          map.panTo(new google.maps.LatLng(lat, lng));
+          // .setCenter() has the same effect, but without animation
+        } catch (err) {
+          console.error(err);
+        }
+      }, function (reason) {
+        console.log(reason);
+      });
+    }
   });
 };
 
@@ -1096,21 +1115,6 @@ function makeMap(mapDiv) {
   var listener = google.maps.event.addListener(map, "idle", function () {
     if (map.getZoom() > 14) map.setZoom(14);
     google.maps.event.removeListener(listener);
-  });
-
-  getUserCoordinates().then(function (coords) {
-    try {
-      // return every character until "."
-      var lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
-          lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
-      console.log(lat, lng);
-      map.panTo(new google.maps.LatLng(lat, lng));
-      // .setCenter()
-    } catch (err) {
-      console.error(err);
-    }
-  }, function (reason) {
-    console.log(reason);
   });
 }
 
