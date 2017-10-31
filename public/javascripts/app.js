@@ -3,7 +3,7 @@ import '../sass/style.scss';
 
 /* import javascript modules here */
 import { $, $$ } from './modules/bling';
-import { initializeMap } from './modules/map';
+import { initializeMap, updateMap } from './modules/map';
 
 /* init map */
 window.on('load', () => {
@@ -12,7 +12,7 @@ window.on('load', () => {
 
 /* update map */
 $('.nav__link--logo').on('click', () => {
-  initializeMap($('#map'));
+  updateMap($('#map'), 'yearlymeeting', 'Philadelphia Yearly Meeting');
 });
 
 /* flash messages disappear after being displayed */

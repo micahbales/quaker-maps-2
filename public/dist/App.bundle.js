@@ -956,7 +956,7 @@ window.on('load', function () {
 /* update map */
 /* import sass into webpack pipeline */
 (0, _bling.$)('.nav__link--logo').on('click', function () {
-  (0, _map.initializeMap)((0, _bling.$)('#map'));
+  (0, _map.updateMap)((0, _bling.$)('#map'), 'yearlymeeting', 'Philadelphia Yearly Meeting');
 });
 
 /* flash messages disappear after being displayed */
@@ -1013,7 +1013,7 @@ exports.$$ = $$;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.initializeMap = undefined;
+exports.updateMap = exports.initializeMap = undefined;
 
 var _axios = __webpack_require__(12);
 
@@ -1043,8 +1043,10 @@ function getUserCoordinates() {
   });
 }
 
-function loadPlaces(map, slug) {
-  _axios2.default.get("/api/v1/meetings/" + (slug ? slug : '')).then(function (res) {
+function loadPlaces(map, slug, criteria) {
+  var isUpdate = criteria;
+
+  _axios2.default.get("/api/v1/meetings/" + (slug ? slug : '') + (criteria ? '?' + criteria : '')).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
@@ -1125,8 +1127,29 @@ function initializeMap(mapDiv) {
     google.maps.event.removeListener(listener);
   });
 }
+// array:     array:
+function updateMap(mapDiv, searchType, searchName) {
+  if (!mapDiv) return;
+
+  var map = new google.maps.Map(mapDiv, mapOptions);
+
+  /* Specify what criteria we are searching by,
+     and what name we're seeking in that criteria
+     (e.g. 'yearlymeeting' and 'Pacific Yearly Meeting') */
+  var endpoint = searchType,
+      criteria = searchName;
+
+  loadPlaces(map, endpoint, criteria);
+
+  /* Keep the map from being zoomed in too tight */
+  var listener = google.maps.event.addListener(map, "idle", function () {
+    if (map.getZoom() > 14) map.setZoom(14);
+    google.maps.event.removeListener(listener);
+  });
+}
 
 exports.initializeMap = initializeMap;
+exports.updateMap = updateMap;
 
 /***/ }),
 /* 12 */

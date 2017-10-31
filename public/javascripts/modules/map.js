@@ -18,8 +18,10 @@ function getUserCoordinates() {
   });
 }
 
-function loadPlaces(map, slug) {
-  axios.get(`/api/v1/meetings/${slug ? slug : ''}`)
+function loadPlaces(map, slug, criteria) {
+  let isUpdate = criteria;
+
+  axios.get(`/api/v1/meetings/${slug ? slug : ''}${criteria ? '?' + criteria : ''}`)
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;
@@ -108,5 +110,25 @@ function initializeMap(mapDiv) {
     google.maps.event.removeListener(listener);
   });
 }
+                          // array:     array:
+function updateMap(mapDiv, searchType, searchName) {
+  if (!mapDiv) return;
 
-export { initializeMap };
+  const map = new google.maps.Map(mapDiv, mapOptions);
+
+  /* Specify what criteria we are searching by,
+     and what name we're seeking in that criteria
+     (e.g. 'yearlymeeting' and 'Pacific Yearly Meeting') */
+  const endpoint = searchType,
+        criteria = searchName;
+
+  loadPlaces(map, endpoint, criteria);
+
+  /* Keep the map from being zoomed in too tight */
+  let listener = google.maps.event.addListener(map, "idle", function() {
+    if (map.getZoom() > 14) map.setZoom(14);
+    google.maps.event.removeListener(listener);
+  });
+}
+
+export { initializeMap, updateMap };
