@@ -957,8 +957,13 @@ window.on('load', function () {
   (0, _map2.default)((0, _bling.$)('#map'));
 });
 
-/* flash messages disappear after being displayed */
+/* update map */
 /* import sass into webpack pipeline */
+(0, _bling.$)('.nav__link--logo').on('click', function () {
+  (0, _map2.default)((0, _bling.$)('#map'));
+});
+
+/* flash messages disappear after being displayed */
 window.setTimeout(fadeFlashes, 6000);
 function fadeFlashes() {
   (0, _bling.$$)('.flash').forEach(function (element) {
@@ -1082,9 +1087,8 @@ function loadPlaces(map, slug) {
     if (!slug) {
       getUserCoordinates().then(function (coords) {
         try {
-          // return every character until "."
-          var lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
-              lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
+          var lat = coords.lat,
+              lng = coords.lng;
 
           // set user location as new center of the map
           map.panTo(new google.maps.LatLng(lat, lng));

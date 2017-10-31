@@ -65,9 +65,9 @@ function loadPlaces(map, slug) {
     if (!slug) {
       getUserCoordinates()
         .then(coords => {
-          try {                                    // return every character until "."
-            let lat = parseInt(coords.lat.toString(10).match(/[^.]*/)),
-                lng = parseInt(coords.lng.toString(10).match(/[^.]*/));
+          try {                     
+            let lat = coords.lat,
+                lng = coords.lng;
 
             // set user location as new center of the map
             map.panTo(new google.maps.LatLng(lat, lng));
