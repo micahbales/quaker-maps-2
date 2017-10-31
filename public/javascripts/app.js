@@ -3,16 +3,16 @@ import '../sass/style.scss';
 
 /* import javascript modules here */
 import { $, $$ } from './modules/bling';
-import makeMap from './modules/map';
+import { initializeMap } from './modules/map';
 
 /* init map */
 window.on('load', () => {
-  makeMap($('#map'));
+  initializeMap($('#map'));
 });
 
 /* update map */
 $('.nav__link--logo').on('click', () => {
-  makeMap($('#map'));
+  initializeMap($('#map'));
 });
 
 /* flash messages disappear after being displayed */

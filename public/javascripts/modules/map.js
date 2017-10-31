@@ -65,7 +65,7 @@ function loadPlaces(map, slug) {
     if (!slug) {
       getUserCoordinates()
         .then(coords => {
-          try {                     
+          try {
             let lat = coords.lat,
                 lng = coords.lng;
 
@@ -89,7 +89,7 @@ function loadPlaces(map, slug) {
   });
 };
 
-function makeMap(mapDiv) {
+function initializeMap(mapDiv) {
   if (!mapDiv) return;
 
   const map = new google.maps.Map(mapDiv, mapOptions);
@@ -109,4 +109,4 @@ function makeMap(mapDiv) {
   });
 }
 
-export default makeMap;
+export { initializeMap };

@@ -945,22 +945,18 @@ var _bling = __webpack_require__(10);
 
 var _map = __webpack_require__(11);
 
-var _map2 = _interopRequireDefault(_map);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /* init map */
 
 
 /* import javascript modules here */
 window.on('load', function () {
-  (0, _map2.default)((0, _bling.$)('#map'));
+  (0, _map.initializeMap)((0, _bling.$)('#map'));
 });
 
 /* update map */
 /* import sass into webpack pipeline */
 (0, _bling.$)('.nav__link--logo').on('click', function () {
-  (0, _map2.default)((0, _bling.$)('#map'));
+  (0, _map.initializeMap)((0, _bling.$)('#map'));
 });
 
 /* flash messages disappear after being displayed */
@@ -1017,6 +1013,7 @@ exports.$$ = $$;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.initializeMap = undefined;
 
 var _axios = __webpack_require__(12);
 
@@ -1109,7 +1106,7 @@ function loadPlaces(map, slug) {
   });
 };
 
-function makeMap(mapDiv) {
+function initializeMap(mapDiv) {
   if (!mapDiv) return;
 
   var map = new google.maps.Map(mapDiv, mapOptions);
@@ -1129,7 +1126,7 @@ function makeMap(mapDiv) {
   });
 }
 
-exports.default = makeMap;
+exports.initializeMap = initializeMap;
 
 /***/ }),
 /* 12 */
