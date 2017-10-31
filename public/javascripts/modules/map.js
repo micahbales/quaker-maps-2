@@ -19,9 +19,17 @@ function getUserCoordinates() {
 }
 
 function loadPlaces(map, slug, criteria) {
-  let isUpdate = criteria;
 
-  axios.get(`/api/v1/meetings/${slug ? slug : ''}${criteria ? '?' + criteria : ''}`)
+  /* determine which API endpoint to hit:
+                                         allmeetings,
+                                         singlemeeting,
+                                         or searchmeetings */
+
+  const endpoint = `${ !slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeeting'}`,
+        isUpdate = criteria;
+
+  axios.get(`/api/v1/` + endpoint +
+    `/${slug ? slug : ''}${isUpdate ? '?' + criteria : ''}`)
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;

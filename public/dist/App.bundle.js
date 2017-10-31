@@ -1044,9 +1044,16 @@ function getUserCoordinates() {
 }
 
 function loadPlaces(map, slug, criteria) {
-  var isUpdate = criteria;
 
-  _axios2.default.get("/api/v1/meetings/" + (slug ? slug : '') + (criteria ? '?' + criteria : '')).then(function (res) {
+  /* determine which API endpoint to hit:
+                                         allmeetings,
+                                         singlemeeting,
+                                         or searchmeetings */
+
+  var endpoint = "" + (!slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeeting'),
+      isUpdate = criteria;
+
+  _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (isUpdate ? '?' + criteria : ''))).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
