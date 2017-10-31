@@ -10,6 +10,10 @@ window.on('load', () => {
   makeMap($('#map'));
 });
 
+/* update map */
+$('.nav__link--logo').on('click', () => {
+  makeMap($('#map'));
+});
 
 /* flash messages disappear after being displayed */
 window.setTimeout(fadeFlashes, 6000);
