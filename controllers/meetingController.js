@@ -77,9 +77,14 @@ exports.mapOneMeeting = async (req, res) => {
 };
 
 exports.searchMeetings = async (req, res) => {
-  const slug = req.params.slug
+  // slug is the criteria we are searching (e.g. "yearlymeeting")
+  const slug = JSON.stringify(req.params.slug);
+  // searchId is the value of that criteria (e.g. "philadelphia-ym")
   const searchId = req.query.id;
 
-  console.log(`{ ${JSON.stringify(slug)} : ${JSON.stringify(searchId)} }`);
-  res.json({ slug : searchId });
+  // create key/value pair: { "yearlymeeting" : "philadelphia-ym" }
+  const searchCriteria = {};
+  searchCriteria[slug] = searchId;
+
+  res.json(searchCriteria);
 };
