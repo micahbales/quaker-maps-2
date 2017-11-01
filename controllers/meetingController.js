@@ -75,3 +75,11 @@ exports.mapOneMeeting = async (req, res) => {
   const meetings = await Meeting.find({ slug }, '-location.type, -created, -__v');
   res.json(meetings);
 };
+
+exports.searchMeetings = async (req, res) => {
+  const slug = req.params.slug
+  const searchId = req.query.id;
+
+  console.log(`{ ${JSON.stringify(slug)} : ${JSON.stringify(searchId)} }`);
+  res.json({ slug : searchId });
+};
