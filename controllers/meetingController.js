@@ -86,5 +86,7 @@ exports.searchMeetings = async (req, res) => {
   const searchCriteria = {};
   searchCriteria[slug] = searchId;
 
-  res.json(searchCriteria);
+  const meetings = await Meeting.find({ "yearlymeeting" : "Great Plains YM" });
+
+  res.json(meetings);
 };
