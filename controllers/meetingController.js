@@ -77,16 +77,17 @@ exports.mapOneMeeting = async (req, res) => {
 };
 
 exports.searchMeetings = async (req, res) => {
-  // slug is the criteria we are searching (e.g. "yearlymeeting")
-  const slug = JSON.stringify(req.params.slug);
-  // searchId is the value of that criteria (e.g. "philadelphia-ym")
-  const searchId = req.query.id;
+  // searchKey is the criteria we are searching (e.g. yearlymeeting)
+  const searchKey = req.params.slug;
 
-  // create key/value pair: { "yearlymeeting" : "philadelphia-ym" }
+  // searchValue is the value of that criteria (e.g. 'Philadelphia YM')
+  const searchValue = req.query.id;
+
+  // create key/value pair: { yearlymeeting : 'Philadelphia YM' }
   const searchCriteria = {};
-  searchCriteria[slug] = searchId;
+  searchCriteria[searchKey] = searchValue;
 
-  const meetings = await Meeting.find({ "yearlymeeting" : "Great Plains YM" });
+  const meetings = await Meeting.find(searchCriteria);
 
   res.json(meetings);
 };
