@@ -25,11 +25,10 @@ router.post('/meetings/:id/delete', catchErrors(meetingController.deleteMeeting)
 
 /** API **/
 
-/* return all meeting records */
-router.get('/api/v1/allmeetings', catchErrors(meetingController.mapAllMeetings));
 /* return a single meeting record */
 router.get('/api/v1/singlemeeting/:slug', catchErrors(meetingController.mapOneMeeting));
-/* return specific meeting records according to :slug criteria & query value */
+/* return specific meeting records depending on queries
+   called without queries, this endpoint returns all meetings */
 router.get('/api/v1/searchmeetings', catchErrors(meetingController.searchMeetings));
 
 module.exports = router;

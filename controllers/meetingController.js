@@ -65,11 +65,6 @@ exports.deleteMeeting = async (req, res) => {
 
 /** API **/
 
-exports.mapAllMeetings = async (req, res) => {
-  const meetings = await Meeting.find({}, '-location.type, -created, -__v');
-  res.json(meetings);
-}
-
 exports.mapOneMeeting = async (req, res) => {
   const slug = req.params.slug;
   const meetings = await Meeting.find({ slug }, '-location.type, -created, -__v');
