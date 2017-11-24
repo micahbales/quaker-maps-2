@@ -30,6 +30,6 @@ router.get('/api/v1/allmeetings', catchErrors(meetingController.mapAllMeetings))
 /* return a single meeting record */
 router.get('/api/v1/singlemeeting/:slug', catchErrors(meetingController.mapOneMeeting));
 /* return specific meeting records according to :slug criteria & query value */
-router.get('/api/v1/searchmeetings/:slug', catchErrors(meetingController.searchMeetings));
+router.get('/api/v1/searchmeetings', catchErrors(meetingController.searchMeetings));
 
 module.exports = router;
