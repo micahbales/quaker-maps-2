@@ -27,8 +27,18 @@ function loadPlaces(map, slug, searchType, searchName) {
 
   const endpoint = `${ slug ? 'singlemeeting' : 'searchmeetings'}`;
 
+  // handle for both single and multi-criteria queries
+  let queries = "?";
+  if (searchType && Array.isArray(searchType)) {
+    searchType.forEach((type, index) => {
+      queries += `&${type}=${searchName[index]}`
+    });
+  } else {
+    queries = `?${searchType}=${searchName}`;
+  }
+
   axios.get(`/api/v1/` + endpoint +
-    `/${slug ? slug : ''}${searchType ? '?' + searchType + '=' + searchName : ''}`)
+    `/${slug ? slug : ''}${searchType ? queries : ''}`)
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;
@@ -69,9 +79,9 @@ function loadPlaces(map, slug, searchType, searchName) {
 
     map.fitBounds(bounds);
 
-    /* If this is not a single-state map, we will center
+    /* If this is a search of all meetings, we will center
        the map on the user's geolocation, if provided */
-    if (!slug) {
+    if (!slug && !searchType) {
       getUserCoordinates()
         .then(coords => {
           try {

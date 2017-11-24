@@ -956,7 +956,7 @@ window.on('load', function () {
 /* update map */
 /* import sass into webpack pipeline */
 (0, _bling.$)('.nav__link--logo').on('click', function () {
-  (0, _map.updateMap)((0, _bling.$)('#map'), 'yearlymeeting', 'Philadelphia YM');
+  (0, _map.updateMap)((0, _bling.$)('#map'), ['worshipstyle', 'branch'], ['Semi-programmed', 'Friends United Meeting']);
 });
 
 /* flash messages disappear after being displayed */
@@ -1052,7 +1052,17 @@ function loadPlaces(map, slug, searchType, searchName) {
 
   var endpoint = "" + (slug ? 'singlemeeting' : 'searchmeetings');
 
-  _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (searchType ? '?' + searchType + '=' + searchName : ''))).then(function (res) {
+  // handle for both single and multi-criteria queries
+  var queries = "?";
+  if (searchType && Array.isArray(searchType)) {
+    searchType.forEach(function (type, index) {
+      queries += "&" + type + "=" + searchName[index];
+    });
+  } else {
+    queries = "?" + searchType + "=" + searchName;
+  }
+
+  _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (searchType ? queries : ''))).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
@@ -1087,9 +1097,9 @@ function loadPlaces(map, slug, searchType, searchName) {
 
     map.fitBounds(bounds);
 
-    /* If this is not a single-state map, we will center
+    /* If this is a search of all meetings, we will center
        the map on the user's geolocation, if provided */
-    if (!slug) {
+    if (!slug && !searchType) {
       getUserCoordinates().then(function (coords) {
         try {
           var lat = coords.lat,
