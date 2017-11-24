@@ -956,7 +956,7 @@ window.on('load', function () {
 /* update map */
 /* import sass into webpack pipeline */
 (0, _bling.$)('.nav__link--logo').on('click', function () {
-  (0, _map.updateMap)((0, _bling.$)('#map'), 'yearlymeeting', 'Philadelphia Yearly Meeting');
+  (0, _map.updateMap)((0, _bling.$)('#map'), 'yearlymeeting', 'Philadelphia YM');
 });
 
 /* flash messages disappear after being displayed */
@@ -1043,17 +1043,16 @@ function getUserCoordinates() {
   });
 }
 
-function loadPlaces(map, slug, criteria) {
+function loadPlaces(map, slug, searchType, searchName) {
 
   /* determine which API endpoint to hit:
                                          allmeetings,
                                          singlemeeting,
                                          or searchmeetings */
 
-  var endpoint = "" + (!slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeetings'),
-      isUpdate = criteria;
+  var endpoint = "" + (slug ? 'singlemeeting' : 'searchmeetings');
 
-  _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (isUpdate ? '?' + criteria : ''))).then(function (res) {
+  _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (searchType ? '?' + searchType + '=' + searchName : ''))).then(function (res) {
     // load array of meeting data from all records in DB
     var meetings = res.data;
     if (!meetings.length) {
@@ -1134,19 +1133,18 @@ function initializeMap(mapDiv) {
     google.maps.event.removeListener(listener);
   });
 }
-// array:     array:
+// accepts string or array of strings
 function updateMap(mapDiv, searchType, searchName) {
   if (!mapDiv) return;
 
   var map = new google.maps.Map(mapDiv, mapOptions);
 
-  /* Specify what criteria we are searching by,
-     and what name we're seeking in that criteria
-     (e.g. 'yearlymeeting' and 'Pacific Yearly Meeting') */
-  var endpoint = searchType,
-      criteria = searchName;
+  var pathname = window.location.pathname;
+  var slug = pathname.slice(10);
 
-  loadPlaces(map, endpoint, criteria);
+  /* trigger loadPlaces with dynamic search terms */
+
+  loadPlaces(map, slug, searchType, searchName);
 
   /* Keep the map from being zoomed in too tight */
   var listener = google.maps.event.addListener(map, "idle", function () {

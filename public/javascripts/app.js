@@ -12,7 +12,7 @@ window.on('load', () => {
 
 /* update map */
 $('.nav__link--logo').on('click', () => {
-  updateMap($('#map'), 'yearlymeeting', 'Philadelphia Yearly Meeting');
+  updateMap($('#map'), 'yearlymeeting', 'Philadelphia YM');
 });
 
 /* flash messages disappear after being displayed */

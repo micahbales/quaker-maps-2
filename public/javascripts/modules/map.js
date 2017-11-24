@@ -18,18 +18,17 @@ function getUserCoordinates() {
   });
 }
 
-function loadPlaces(map, slug, criteria) {
+function loadPlaces(map, slug, searchType, searchName) {
 
   /* determine which API endpoint to hit:
                                          allmeetings,
                                          singlemeeting,
                                          or searchmeetings */
 
-  const endpoint = `${ !slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeetings'}`,
-        isUpdate = criteria;
+  const endpoint = `${ slug ? 'singlemeeting' : 'searchmeetings'}`;
 
   axios.get(`/api/v1/` + endpoint +
-    `/${slug ? slug : ''}${isUpdate ? '?' + criteria : ''}`)
+    `/${slug ? slug : ''}${searchType ? '?' + searchType + '=' + searchName : ''}`)
   .then(res => {
     // load array of meeting data from all records in DB
     const meetings = res.data;
@@ -118,19 +117,18 @@ function initializeMap(mapDiv) {
     google.maps.event.removeListener(listener);
   });
 }
-                          // array:     array:
+                          // accepts string or array of strings
 function updateMap(mapDiv, searchType, searchName) {
   if (!mapDiv) return;
 
   const map = new google.maps.Map(mapDiv, mapOptions);
 
-  /* Specify what criteria we are searching by,
-     and what name we're seeking in that criteria
-     (e.g. 'yearlymeeting' and 'Pacific Yearly Meeting') */
-  const endpoint = searchType,
-        criteria = searchName;
+  const pathname = window.location.pathname;
+  const slug = pathname.slice(10);
 
-  loadPlaces(map, endpoint, criteria);
+  /* trigger loadPlaces with dynamic search terms */
+
+  loadPlaces(map, slug, searchType, searchName);
 
   /* Keep the map from being zoomed in too tight */
   let listener = google.maps.event.addListener(map, "idle", function() {
