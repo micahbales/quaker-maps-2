@@ -1050,7 +1050,7 @@ function loadPlaces(map, slug, criteria) {
                                          singlemeeting,
                                          or searchmeetings */
 
-  var endpoint = "" + (!slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeeting'),
+  var endpoint = "" + (!slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeetings'),
       isUpdate = criteria;
 
   _axios2.default.get("/api/v1/" + endpoint + ("/" + (slug ? slug : '') + (isUpdate ? '?' + criteria : ''))).then(function (res) {

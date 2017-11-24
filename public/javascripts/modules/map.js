@@ -25,7 +25,7 @@ function loadPlaces(map, slug, criteria) {
                                          singlemeeting,
                                          or searchmeetings */
 
-  const endpoint = `${ !slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeeting'}`,
+  const endpoint = `${ !slug ? 'allmeetings' : !criteria ? 'singlemeeting' : 'searchmeetings'}`,
         isUpdate = criteria;
 
   axios.get(`/api/v1/` + endpoint +

@@ -81,7 +81,7 @@ exports.searchMeetings = async (req, res) => {
   const searchKey = req.params.slug;
 
   // searchValue is the value of that criteria (e.g. 'Philadelphia YM')
-  const searchValue = req.query.id;
+  const searchValue = req.query[searchKey];
 
   // create key/value pair: { yearlymeeting : 'Philadelphia YM' }
   const searchCriteria = {};
