@@ -85,9 +85,13 @@ exports.searchMeetings = async (req, res) => {
 
   // create key/value pairs: { yearlymeeting : 'Philadelphia YM', ... }
   const searchCriteria = {};
-  searchCriteria[searchKeys] = searchValues[0];
+  searchKeys.forEach((key, index) => {
+    searchCriteria[key] = searchValues[index];
+  });
 
-  const meetings = await Meeting.find(searchCriteria);
+  // single or multi criteria: {yearlymeeting : 'Philadelphia YM', state : 'DE'}
+  const meetings = await Meeting.find(searchCriteria,
+                                      '-location.type, -created, -__v');
 
   res.json(meetings);
 };
