@@ -2,6 +2,23 @@ extends layout
 
 block content
   h1.map-title= title
+  form.map-search
+      label Yearly Meeting
+      select(name='yearlymeeting')
+        each yearlymeeting in formFields.yearlymeetings
+          option(value="hi") #{yearlymeeting}
+      label Yearly Meeting
+      select(name='state')
+        each state in formFields.states
+          option(value="hi") #{state}
+      label Yearly Meeting
+      select(name='worshipstyle')
+        each worshipstyle in formFields.worshipstyles
+          option(value="hi") #{worshipstyle}
+      label Yearly Meeting
+      select(name='branch')
+        each branch in formFields.branches
+          option(value="hi") #{branch}
   .map
     .main-map
       #map 

@@ -6,7 +6,7 @@ const { catchErrors } = require('../handlers/errorHandlers');
 /* redirect index to /map */
 router.get('/', (req, res) => { res.redirect('/map') });
 /* main map */
-router.get('/map', meetingController.map);
+router.get('/map', catchErrors(meetingController.map));
 
 /* meetings index page */
 router.get('/meetings', catchErrors(meetingController.getMeetings));
