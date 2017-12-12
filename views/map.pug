@@ -6,19 +6,19 @@ block content
       label Yearly Meeting
       select(name='yearlymeeting')
         each yearlymeeting in formFields.yearlymeetings
-          option(value="hi") #{yearlymeeting}
-      label Yearly Meeting
+          option(value=`${yearlymeeting}`) #{yearlymeeting}
+      label State/Province
       select(name='state')
         each state in formFields.states
-          option(value="hi") #{state}
-      label Yearly Meeting
+          option(value=`${state}`) #{state}
+      label Worship Style
       select(name='worshipstyle')
         each worshipstyle in formFields.worshipstyles
-          option(value="hi") #{worshipstyle}
-      label Yearly Meeting
+          option(value=`${worshipstyle}`) #{worshipstyle}
+      label Branch
       select(name='branch')
         each branch in formFields.branches
-          option(value="hi") #{branch}
+          option(value=`${branch}`) #{branch}
   .map
     .main-map
       #map 

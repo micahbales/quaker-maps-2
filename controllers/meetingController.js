@@ -3,36 +3,30 @@ const Meeting = mongoose.model('Meeting');
 
 exports.map = async (req, res) => {
 
-  /*
+  let yearlymeetings,
+      states,
+      worshipstyles,
+      branches;
 
-  TODOs:
-
-  * There must be a way to do this more efficiently, but for the moment I am
-  doing a separate query for each set of options that I need for my dropdowns
-
-  * The results should be returned in alphabetical order (Mongo's .sort()
-  doesn't seem to do what I want - perhaps it only works on records?)
-                                                                             */
-
-  const yearlymeetings = await Meeting.find().distinct('yearlymeeting', (err, results) => {
+  await Meeting.find().distinct('yearlymeeting', (err, results) => {
     if (err) { console.error(err) }
-    return results;
+    yearlymeetings = results.sort();
   });
 
-  const states = await Meeting.find().distinct('state', (err, results) => {
+  await Meeting.find().distinct('state', (err, results) => {
     if (err) { console.error(err) }
-    return results;
-  }).sort();
+    states = results.sort();
+  });
 
-  const worshipstyles = await Meeting.find().distinct('worshipstyle', (err, results) => {
+  await Meeting.find().distinct('worshipstyle', (err, results) => {
     if (err) { console.error(err) }
-    return results;
-  }).sort();
+    worshipstyles = results.sort();
+  });
 
-  const branches = await Meeting.find().distinct('branch', (err, results) => {
+  await Meeting.find().distinct('branch', (err, results) => {
     if (err) { console.error(err) }
-    return results;
-  }).sort();
+    branches = results.sort();
+  });
 
   const formFields = { yearlymeetings, states, worshipstyles, branches };
 
