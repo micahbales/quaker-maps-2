@@ -1,24 +1,38 @@
 extends layout
 
 block content
-  h1.map-title= title
-  form.map-search
-      label Yearly Meeting
-      select(name='yearlymeeting')
-        each yearlymeeting in formFields.yearlymeetings
-          option(value=`${yearlymeeting}`) #{yearlymeeting}
-      label State/Province
-      select(name='state')
-        each state in formFields.states
-          option(value=`${state}`) #{state}
-      label Worship Style
-      select(name='worshipstyle')
-        each worshipstyle in formFields.worshipstyles
-          option(value=`${worshipstyle}`) #{worshipstyle}
-      label Branch
-      select(name='branch')
-        each branch in formFields.branches
-          option(value=`${branch}`) #{branch}
-  .map
-    .main-map
-      #map 
+  .row
+    h1.col-md-12.text-center.map-title= title
+  form.row.map-search 
+    .form-group
+      .row.text-center
+        label.col-xs-4.col-xs-offset-4 Yearly Meeting
+      .row
+        select(name='yearlymeeting').col-xs-4.col-xs-offset-4
+          each yearlymeeting in formFields.yearlymeetings
+            option(value=`${yearlymeeting}`) #{yearlymeeting}
+    .form-group
+      .row.text-center
+        label.col-xs-4.col-xs-offset-4 State/Province
+      .row 
+        select(name='state').col-xs-4.col-xs-offset-4
+          each state in formFields.states
+            option(value=`${state}`) #{state}
+    .form-group
+      .row.text-center
+        label.col-xs-4.col-xs-offset-4 Worship Style
+      .row 
+        select(name='worshipstyle').col-xs-4.col-xs-offset-4
+          each worshipstyle in formFields.worshipstyles
+            option(value=`${worshipstyle}`) #{worshipstyle}
+    .form-group
+      .row.text-center
+        label.col-xs-4.col-xs-offset-4 Branch
+      .row 
+        select(name='branch').col-xs-4.col-xs-offset-4
+          each branch in formFields.branches
+            option(value=`${branch}`) #{branch}
+  
+  .map.row
+    #map.col-xs-12.col-md-10.col-md-offset-1
+       

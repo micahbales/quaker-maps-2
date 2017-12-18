@@ -2,48 +2,55 @@ doctype html
 html
   head
     title= `${title || 'Not Found'} | ${h.siteName}`
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 
+    rel='stylesheet', 
+    integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', 
+    crossorigin='anonymous')
     link(rel='stylesheet', href='/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="/images/icons/pug.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
-    block header
-      //- header/navbar
-      header.top
-        nav.nav
-          .nav__section 
-            li.nav__item
-              .nav__link.nav__link--logo
-                != h.icon('pug')
-            each item in h.menu
-              li.nav__item 
-                a.nav__link.nav__link--logo(href=item.slug, class=currentPath.startsWith(item.slug) ? 'nav__link--active' : '')
-                  i(class=`fa fa-${item.fa}` aria-hidden="true")
-                  .nav__title #{item.title}
-    
-    block messages 
-      if locals.flashes
-        .flashes
-          //- each flash message has a category, which serves as key for the message
-          - const categories = Object.keys(locals.flashes);
-            each category in categories
-              each message in flashes[category]
-                .flash(class=`flash--${category}`)
-                  p.flash__text #{message}
-    
-    .content 
-      block content 
-        //- main content
-        h2 default content
-    
-    footer 
-      block footer 
-        //- footer
-        p Quaker Maps &copy; #{h.moment().format('YYYY')} Micah Bales
-        
-    block scripts
-      //- google maps api
-      script(async defer src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_KEY}`) 
-      //- bundled scripts from webpack
-      script(src="/dist/App.bundle.js")
-      //- font awesome via CDN
-      script(src="https://use.fontawesome.com/1fc94b8980.js")
+    .container
+      block header
+        //- header/navbar
+        header.top
+          nav.nav
+            .nav__section 
+              li.nav__item
+                .nav__link.nav__link--logo
+                  != h.icon('pug')
+              each item in h.menu
+                li.nav__item 
+                  a.nav__link.nav__link--logo(href=item.slug, 
+                    class=currentPath.startsWith(item.slug) ? 
+                    'nav__link--active' : '')
+                    i(class=`fa fa-${item.fa}` aria-hidden="true")
+                    .nav__title #{item.title}
+      
+      block messages 
+        if locals.flashes
+          .flashes
+            //- each flash message has a category, which serves as key for the message
+            - const categories = Object.keys(locals.flashes);
+              each category in categories
+                each message in flashes[category]
+                  .flash(class=`flash--${category}`)
+                    p.flash__text #{message}
+      
+      .content 
+        block content 
+          //- main content
+          h2 default content
+      
+      footer 
+        block footer 
+          //- footer
+          p Quaker Maps &copy; #{h.moment().format('YYYY')} Micah Bales
+          
+      block scripts
+        //- google maps api
+        script(async defer src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_KEY}`) 
+        //- bundled scripts from webpack
+        script(src="/dist/App.bundle.js")
+        //- font awesome via CDN
+        script(src="https://use.fontawesome.com/1fc94b8980.js")
