@@ -1,11 +1,4 @@
-.nav__section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 5%;
-}
-
-.nav__item {
+.nav-icon {
   width: 105px;
   height: 105px;
   list-style: none;
@@ -17,14 +10,10 @@
   }
 }
 
-.nav__link--logo {
+.nav-title {
+  display: block;
+  margin-right: 30px;
+  font-size: 12px;
+  font-family: 'Libre Baskerville';
   text-align: center;
-  text-decoration: none;
-  color: black;
-
-  .nav__title {
-    display: block;
-    margin-right: 30px;
-    font-family: 'Libre Baskerville'
-  }
 }

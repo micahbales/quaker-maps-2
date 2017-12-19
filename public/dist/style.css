@@ -1,34 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville|Open+Sans);.nav__section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 5%; }
-
-.nav__item {
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville|Open+Sans);.nav-icon {
   width: 105px;
   height: 105px;
   list-style: none; }
-  .nav__item i {
+  .nav-icon i {
     font-size: 75px;
     color: #56332B;
     margin-top: 2%;
     margin-left: 1%; }
 
-.nav__link--logo {
-  text-align: center;
-  text-decoration: none;
-  color: black; }
-  .nav__link--logo .nav__title {
-    display: block;
-    margin-right: 30px;
-    font-family: 'Libre Baskerville'; }
+.nav-title {
+  display: block;
+  margin-right: 30px;
+  font-size: 12px;
+  font-family: 'Libre Baskerville';
+  text-align: center; }
 
 .flashes {
   display: -webkit-box;

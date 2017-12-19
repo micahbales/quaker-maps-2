@@ -13,19 +13,18 @@ html
     .container
       block header
         //- header/navbar
-        header.top
-          nav.nav
-            .nav__section 
-              li.nav__item
-                .nav__link.nav__link--logo
-                  != h.icon('pug')
+        header
+          nav
+            .row 
+              li.col-xs-3.col-xs-offset-4.nav-icon
+                != h.icon('pug')
               each item in h.menu
-                li.nav__item 
-                  a.nav__link.nav__link--logo(href=item.slug, 
+                li.col-xs-3.nav-icon
+                  a(href=item.slug, 
                     class=currentPath.startsWith(item.slug) ? 
                     'nav__link--active' : '')
                     i(class=`fa fa-${item.fa}` aria-hidden="true")
-                    .nav__title #{item.title}
+                    .nav-title #{item.title}
       
       block messages 
         if locals.flashes
